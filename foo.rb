@@ -8,10 +8,28 @@ class User
   end
 
   def send_email(recipient, subject, body)
-    puts "sending an email to #{recipient} with the subject #{subject} and the text #{body}"
+    email = Email.new(recipient, subject, body, @name)
+    email.send
+  end
+end
+
+class Email
+  def initialize(recipient, subject, body, sender)
+    @recipient = recipient
+    @subject = subject
+    @body = body
+    @sender = sender
+  end
+
+  def send
+    puts %(sending an email from #{@sender} to #{@recipient} with the subject "#{@subject}" and the body "#{@body}")
   end
 end
 
 anja = User.new('Anja')
+sabrina = User.new('Sabrina')
+
 anja.introduce
+sabrina.introduce
+
 anja.send_email('carla@email.com', 'Railsgirls infos!', 'Lots of text here ...')
