@@ -8,10 +8,10 @@ def introduce
   puts @name + 'is what I want to do!'
 end
 
-def ingridients (milk, eggs, butter, flour)
+def ingridients(*ingridients)
   ingridients.each do |ingredient|
+    puts 'How much or many' + ingredient + ' we need for making ' + @name + ' ?'
   end
-  puts 'How much or many' + ingredient + ' we need for making ' + @name ' ?'
 end
 
 end
@@ -21,11 +21,11 @@ waffles = Recipes.new('Waffles')
 strawberrycake = Recipes.new('Strawberrycake')
 
 waffles.introduce
-waffles.ingridients
+waffles.ingridients('milk', 'eggs', 'butter', 'flour' )
 reply = gets.chomp.to_s
-puts 'Uh' + reply + ' that sounds like a lot of work. Let me ask you again: '
+puts 'Uh ' + reply + ' that sounds like a lot of work. Let me ask you again: '
 
 strawberrycake.introduce
-strawberrycake.ingridients
+strawberrycake.ingridients('milk', 'eggs', 'butter', 'flour' )
 reply2 = gets.chomp.to_s
-puts 'Ah' + reply2 + ' nearly the same, just missing the Strawberry ingredient !'
+puts 'Ah ' + reply2 + ' nearly the same, just missing the Strawberry ingredient !'
