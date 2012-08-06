@@ -17,7 +17,7 @@ end
 
 # Here I am creating a class called Services, which, depending on the
 # values in a country's characteristics, will attempt to bring them
-# to the optimal level.
+# to the optimal level (and display a message that it is doing so).
 class Services
 	def provide_universal_health_care
 		if @health == "bad"
