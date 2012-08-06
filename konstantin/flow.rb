@@ -18,7 +18,7 @@ britain   = Country.new("britain", true)
 germany   = Country.new("germany", false)
 countries = [spain, britain, germany]
 
-world_is_happy = countries.all? do |c|
+world_is_happy = countries.any? do |c|
   c.happy?
 end
 
