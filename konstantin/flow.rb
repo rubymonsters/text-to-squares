@@ -18,12 +18,12 @@ britain   = Country.new("britain", true)
 germany   = Country.new("germany", false)
 countries = [spain, britain, germany]
 
-world_is_happy = countries.none? do |c|
-  c.happy?
+unhappy_countries = []
+
+countries.each do |c|
+  unhappy_countries << c unless c.happy?
 end
 
-if world_is_happy
-  puts "all hunky-dory"
-else
-  puts "meh :("
+unhappy_countries.each do |c|
+  puts c.name
 end
