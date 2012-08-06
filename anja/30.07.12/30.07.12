@@ -1,0 +1,32 @@
+30.07.12
+
+Class => has many instances, has methods
+inheritance => 
+Methods => call it with .method, def ... end, 
+Variable
+
+
+
+class Foo
+	def something
+		puts "Hi!"
+	end
+end 
+
+
+Foo.new.something
+
+
+class Animal
+	def sound
+		'anbstract sound'
+	end
+end
+
+class Dog < Animal
+	def sound
+		'Woof'
+	end
+end
+
+puts Dog.new.sound
