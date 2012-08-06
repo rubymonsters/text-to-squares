@@ -17,7 +17,7 @@ spain             = Country.new("spain", false)
 britain           = Country.new("britain", true)
 germany           = Country.new("germany", false)
 countries         = [spain, britain, germany]
-unhappy_countries = countries.select { |c| not c.happy? }
+unhappy_countries = countries.reject { |c| c.happy? }
 
 unhappy_countries.each do |c|
   puts c.name
