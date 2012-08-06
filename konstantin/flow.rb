@@ -19,5 +19,6 @@ germany           = Country.new("germany", false)
 countries         = [spain, britain, germany]
 unhappy_countries = countries.reject { |c| c.happy? }
 a_happy_country   = countries.detect { |c| c.happy? }
+country_names     = countries.map { |c| c.name } # can also be collect
 
-puts "very happy is #{a_happy_country.name}"
+p country_names
