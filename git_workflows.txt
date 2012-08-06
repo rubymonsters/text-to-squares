@@ -66,4 +66,24 @@
 
 Congratulations, you have shared your work on GitHub!
 
+# How to add a git remote
+
+1. Think of a name. Any name. Let's call it svenfuchs. Nice.
+
+2. You need associate name with the Git repo's URL
+
+    $ git remote add svenfuchs git://github.com/svenfuchs/text-to-squares
+
+# How to pull changes from your repository
+
+1. Use `git pull`
+
+    $ git pull
+
+# Pulling from someone else's repo
+
+1. Say whom and from what branch you want to pull from
+
+    $ git pull svenfuchs master
+
 :)
