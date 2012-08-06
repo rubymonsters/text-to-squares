@@ -15,6 +15,12 @@ end
 
 spain     = Country.new("spain", false)
 britain   = Country.new("britain", true)
-countries = [spain, britain]
+germany   = Country.new("germany", false)
+countries = [spain, britain, germany]
 
-puts "spain is sad :(" unless spain.happy?
+country = spain
+puts "#{country.name} is sad :(" unless country.happy?
+
+country = britain
+puts "#{country.name} is sad :(" unless country.happy?
+
