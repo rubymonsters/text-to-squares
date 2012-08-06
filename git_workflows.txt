@@ -49,6 +49,10 @@
 
    $ git commit -m 'wohooo, a new commit'
 
+   if you want us to review your commit, then you can
+   include our GitHub handles to the commit message
+   like so: @rkh @lucaspinto @svenfuchs
+
 5. Review the commits you have
 
    $ git log
