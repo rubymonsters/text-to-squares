@@ -1,0 +1,65 @@
+# How to fork and clone a repository
+
+1. Go to GitHub and find the repository to clone.
+   We use https://github.com/svenfuchs/text-to-squares
+   for this project group.
+
+2. Click the "Fork" button on the top right. (If you
+   have a window listing accounts then select your personal
+   account.) GitHub should fork the repository to your
+   account and redirect to it. I.e. you should be on
+   https://github.com/[your-name]/text-to-squares now.
+
+3. Copy the "Read+Write access" url, e.g.
+   git@github.com:svenfuchs/text-to-squares.git
+
+4. Open the terminal and go to your projects directory
+   by doing
+
+   $ cd path/to/my/projects
+
+   (use whatever path your projects directory is at)
+
+5. Now clone your repository fork to your local computer
+   by doing:
+
+   $ git@github.com:[your-name]/text-to-squares.git
+
+   and change into the new directory:
+
+   $ cd text-to-squares
+
+# How to add a new file to your git repository, commit and push it
+
+1. Go to your repository on your local computer:
+
+   $ cd path/to/my/projects/text-to-squares
+
+2. Review the status of your repository:
+
+   $ git status
+
+3. Add all files to the so called "staging area" in git
+   (i.e. tell git to add the file to the list of files
+   that will be committed)
+
+   $ git add .
+
+4. Actually do the commit
+
+   $ git commit -m 'wohooo, a new commit'
+
+5. Review the commits you have
+
+   $ git log
+
+   (you might have to hit "q" in order to get out of the
+   log view)
+
+6. Push the new commit to GitHub
+
+   $ git push
+
+Congratulations, you have shared your work on GitHub!
+
+:)
