@@ -18,9 +18,6 @@ britain   = Country.new("britain", true)
 germany   = Country.new("germany", false)
 countries = [spain, britain, germany]
 
-country = spain
-puts "#{country.name} is sad :(" unless country.happy?
-
-country = britain
-puts "#{country.name} is sad :(" unless country.happy?
-
+countries.each do |c|
+  puts "#{c.name} is sad :(" unless c.happy?
+end
