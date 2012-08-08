@@ -1,29 +1,34 @@
+
+#du befindest dich in einem zufällig ausgewähltem raum und machst eine lampe an und aus
+#dann geht die lampe kaputt und du gehst den nächsten raum
+
+
 Lamps_in_flat = [ "kitchen", "bathroom", "floor", "dining_room"]
 
 
 class Lamp
 	def initialize
 		@room = Lamps_in_flat[rand(Lamps_in_flat.length)]
-		#@room = Lamps_in_flat.sample #in ruby 1.9. testen!!
+		Lamps_in_flat.delete(@room)   #den raum aus dem array entfernen
 		@bulb = "off"
 		@switch_count = 0
 		puts
-		puts 'Hurray a new lamp in the ' + @room + '.'
+		puts 'You are now in the ' + @room + ' and turn the light on.'
 		@state_of_the_switch = false
 	end
 
 	def switch_on_and_off
-		while @switch_count < 10
+		while @switch_count < 2
 			if @state_of_the_switch == false
 				puts "Switching the light on."
-				@bulb = "on"
+				# @bulb = "on"
 				@state_of_the_switch = true
 				@switch_count += 1
 				# show_state
 
 			else  @state_of_the_switch == true
 				puts "Switching the light off."
-				@bulb = "off"
+				# @bulb = "off"
 				@state_of_the_switch = false
 				@switch_count += 1
 				# show_state
@@ -42,36 +47,29 @@ end
 
 class Bulp
 	def breaks
-		puts "Great, now the lamp broke!"
+		unless Lamps_in_flat.empty? 
+			puts "Great, now the bulp broke!"
+			puts "You are going to the next room."
+			nextroom = Lamp.new
+		end
+	
+		puts "Now you broke all the lamps in the flat!"
 		exit
 	end
 end
 
 
-kitchenlamp = Lamp.new
+lamp = Lamp.new
 
-kitchenlamp.show_state
-kitchenlamp.switch_on_and_off
-kitchenlamp.show_state
-kitchenlamp.switch_on_and_off
-kitchenlamp.show_state
-kitchenlamp.switch_on_and_off
-kitchenlamp.show_state
-kitchenlamp.switch_on_and_off
-kitchenlamp.show_state
-kitchenlamp.switch_on_and_off
-kitchenlamp.show_state
-kitchenlamp.switch_on_and_off
-kitchenlamp.show_state
-kitchenlamp.switch_on_and_off
-kitchenlamp.show_state
-kitchenlamp.switch_on_and_off
-kitchenlamp.show_state
-kitchenlamp.switch_on_and_off
-kitchenlamp.show_state
-kitchenlamp.switch_on_and_off
-kitchenlamp.show_state
-kitchenlamp.switch_on_and_off
-kitchenlamp.show_state
-kitchenlamp.switch_on_and_off
-kitchenlamp.show_state
+lamp.switch_on_and_off
+lamp.switch_on_and_off
+lamp.switch_on_and_off
+lamp.switch_on_and_off
+lamp.switch_on_and_off
+lamp.switch_on_and_off
+lamp.switch_on_and_off
+lamp.switch_on_and_off
+lamp.switch_on_and_off
+lamp.switch_on_and_off
+lamp.switch_on_and_off
+
