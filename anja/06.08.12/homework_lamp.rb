@@ -51,6 +51,7 @@ class Bulp
 			puts "Great, now the bulp broke!"
 			puts "You are going to the next room."
 			nextroom = Lamp.new
+			nextroom.switch_on_and_off
 		end
 	
 		puts "Now you broke all the lamps in the flat!"
@@ -61,15 +62,5 @@ end
 
 lamp = Lamp.new
 
-lamp.switch_on_and_off
-lamp.switch_on_and_off
-lamp.switch_on_and_off
-lamp.switch_on_and_off
-lamp.switch_on_and_off
-lamp.switch_on_and_off
-lamp.switch_on_and_off
-lamp.switch_on_and_off
-lamp.switch_on_and_off
-lamp.switch_on_and_off
 lamp.switch_on_and_off
 
