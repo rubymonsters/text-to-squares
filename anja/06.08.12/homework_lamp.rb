@@ -2,54 +2,77 @@
 class Person
 	def initialize(name)
 		@name = name
-		Rooms = ["kitchen", "floor", "bathroom", "dinning room"]
-
-	end
-
-	def move
-		person = Room.new
-		person.enter_room(Room.shuffle)		#moves into rooms and turns the light on
-	end
-end
-
-class Room
-	def initialize(name)
-		@name = name
+		@room = Room.names.shuffle!.pop
 		@lamp = Lamp.new
 	end
 
 	def enter_room
-		puts @name + "goes into the " + @name
+		puts @name + " goes into the " + @room + "."
+		puts "Its dark. " + @name +" turns the light on."
+		@lamp.light_comes_on 
 	end
+end
 
+class Room
+	def self.names
+		["kitchen", "floor" , "bathroom" , "dinning room"]
+	end
 end
 
 class Lamp
-	def initialize()
-		@bulb = Bulb.new
-		@switch = Switch.new
-	end
-end
+ 	def initialize()
+ 		@bulb = Bulb.new()
+ 		@switch = Switch.new(false)
+ 	end
+
+ 	def light_comes_on
+		if @switch.state == true
+ 			puts "The light in the #{Person.room} in on."
+ 			Switch.flip
+ 		else
+			puts "The light in the #{Person.room} was already on. You turned it off."
+ 			Switch.flip
+ 		end
+ 	end
+ end
 
 class Switch
-	def initialize(state)
-		@switch_state = state	#on or off (true or false)	
-	end
+ 	def initialize(state)
+ 		@state = state					#true or false	
+ 	end
 
-	def flip
-		@switch_state = not @state
-	end
-end
+ 	def flip
+ 		@state = not @state
+ 	end
+ end
 
-class Bulb
-	def initialize()
-		@bulb_state #broken or not broken
-	end
+ class Bulb
+ 	def initialize()
+ 	 	# @state = state				#on, off or broken
+ 	end
 
-	def broken
-		puts 
-	end 
-end	
+ 	def on_or_off
+ 		if Switch.state == true
+ 			return true
+ 			#puts "The Bulb is on"
+ 			#@state = on
+ 		else
+ 			return false
+ 			# puts "The Bulb is off"
+ 			#@state = off
+ 		end
+ 	end
+
+ end
+
+
+
+# 	def broken
+# 		puts "You broke the light in the #{@room}."
+# 	end 
+# end	
 	
 
 
+Anja = Person.new("Anja")
+Anja.enter_room
