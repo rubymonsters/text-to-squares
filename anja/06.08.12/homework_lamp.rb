@@ -1,66 +1,78 @@
 
-#du befindest dich in einem zufällig ausgewähltem raum und machst eine lampe an und aus
-#dann geht die lampe kaputt und du gehst den nächsten raum
+class Person
+	def initialize(name)
+		@name = name
+		@room = Room.names.shuffle!.pop
+		@lamp = Lamp.new
+	end
 
+	def enter_room
+		puts @name + " goes into the " + @room + "."
+		puts "Its dark. " + @name +" turns the light on."
+		@lamp.light_comes_on 
+	end
+end
 
-Lamps_in_flat = [ "kitchen", "bathroom", "floor", "dining_room"]
-
+class Room
+	def self.names
+		["kitchen", "floor" , "bathroom" , "dinning room"]
+	end
+end
 
 class Lamp
-	def initialize
-		@room = Lamps_in_flat[rand(Lamps_in_flat.length)]
-		Lamps_in_flat.delete(@room)   #den raum aus dem array entfernen
-		@bulb = "off"
-		@switch_count = 0
-		puts
-		puts 'You are now in the ' + @room + ' and turn the light on.'
-		@state_of_the_switch = false
-	end
+ 	def initialize()
+ 		@bulb = Bulb.new()
+ 		@switch = Switch.new(false)
+ 	end
 
-	def switch_on_and_off
-		while @switch_count < 2
-			if @state_of_the_switch == false
-				puts "Switching the light on."
-				# @bulb = "on"
-				@state_of_the_switch = true
-				@switch_count += 1
-				# show_state
+ 	def light_comes_on
+		if @switch.state == true
+ 			puts "The light in the #{Person.room} in on."
+ 			Switch.flip
+ 		else
+			puts "The light in the #{Person.room} was already on. You turned it off."
+ 			Switch.flip
+ 		end
+ 	end
+ end
 
-			else  @state_of_the_switch == true
-				puts "Switching the light off."
-				# @bulb = "off"
-				@state_of_the_switch = false
-				@switch_count += 1
-				# show_state
-			end
-		end
-		bulp = Bulp.new
-		bulp.breaks
-	end
+class Switch
+ 	def initialize(state)
+ 		@state = state					#true or false	
+ 	end
 
-	def show_state
-		puts %(The light is #{@bulb}.)
-		puts %((state_of_the_switch = #{@state_of_the_switch} & switch_count = #{@switch_count}))
-		puts
-	end
-end
+ 	def flip
+ 		@state = not @state
+ 	end
+ end
 
-class Bulp
-	def breaks
-		unless Lamps_in_flat.empty? 
-			puts "Great, now the bulp broke!"
-			puts "You are going to the next room."
-			nextroom = Lamp.new
-			nextroom.switch_on_and_off
-		end
+ class Bulb
+ 	def initialize()
+ 	 	# @state = state				#on, off or broken
+ 	end
+
+ 	def on_or_off
+ 		if Switch.state == true
+ 			return true
+ 			#puts "The Bulb is on"
+ 			#@state = on
+ 		else
+ 			return false
+ 			# puts "The Bulb is off"
+ 			#@state = off
+ 		end
+ 	end
+
+ end
+
+
+
+# 	def broken
+# 		puts "You broke the light in the #{@room}."
+# 	end 
+# end	
 	
-		puts "Now you broke all the lamps in the flat!"
-		exit
-	end
-end
 
 
-lamp = Lamp.new
-
-lamp.switch_on_and_off
-
+Anja = Person.new("Anja")
+Anja.enter_room
