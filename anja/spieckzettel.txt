@@ -4,6 +4,7 @@ SPICKZETTEL:
 Class => 	defines a concept (has methods) 					::create  = erstellen
 			written CamelCase
 			has many instances
+			::Klasse aufrufen = var = Klasse.new
 
 Object => 	single instance of Class, 
 			Class is the classification and an object is an actual Object or the thing itself
@@ -17,12 +18,15 @@ Method => 	Verbs,
 			within a class or/and object,
 			call it with .method, 
 			def ... end,
+			::Methode aufrufen = Name der Methode
+			::Methode auf Klasse aufrufen = class.methode
 
 
 Hash => 	Dicionary with keys and value {:a => "b"}
 
 Array => 	list of things [a, b]
 			Collection of Objects
+			::Array aufrufen = Name des Arrays
 
 Block 		=> Anweisungsgruppierung ( grouping statements)
 			=> loops
@@ -40,7 +44,7 @@ Arguments => data passed to methods in patentheses
 
 Parameters => recieved by methods
 
-Conditionals =>
+control flow =>
 				if ...elsif... else... end
 				unless ... end
 				while ... end
