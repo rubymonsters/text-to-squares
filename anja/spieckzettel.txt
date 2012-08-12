@@ -1,14 +1,14 @@
 SPICKZETTEL:
 
 
-Class => 	defines a concept (has methods) 
+Class => 	defines a concept (has methods) 					::create  = erstellen
 			written CamelCase
 			has many instances
 
 Object => 	single instance of Class, 
 			Class is the classification and an object is an actual Object or the thing itself
 
-Variable => placeholder for a single Object (Number, Strings, Arrays, Text, Object)
+Variable => placeholder for a single Object (Number, Strings, Arrays, Text, Object)  ::assign = zuweisen
 				local Variable =>
 				instance Variable => @, relevant in one Object, define characteritics of a single object 
 

@@ -9,7 +9,7 @@ class Person
 	def enter_room
 		puts @name + " goes into the " + @room + "."
 		puts "Its dark. " + @name +" turns the light on."
-		@lamp.light_comes_on 
+		@lamp.flip_switch 
 	end
 end
 
@@ -25,9 +25,9 @@ class Lamp
  		@switch = Switch.new(false)
  	end
 
- 	def light_comes_on
-		if @switch.state == true
- 			puts "The light in the #{Person.room} in on."
+ 	def flip_switch
+		if @bulb.on_or_off == true
+ 			puts "The light in the #{Person.room} is on."
  			Switch.flip
  		else
 			puts "The light in the #{Person.room} was already on. You turned it off."
@@ -42,24 +42,27 @@ class Switch
  	end
 
  	def flip
- 		@state = not @state
+ 		if @state == true
+ 			return false
+ 		else
+ 			return true
+ 		end
+ 		# @state = not @state
  	end
  end
 
  class Bulb
  	def initialize()
- 	 	# @state = state				#on, off or broken
+ 	 	# @state = true				#on, off or broken
  	end
 
  	def on_or_off
- 		if Switch.state == true
+ 		if Switch.flip == true
  			return true
  			#puts "The Bulb is on"
- 			#@state = on
  		else
  			return false
  			# puts "The Bulb is off"
- 			#@state = off
  		end
  	end
 
