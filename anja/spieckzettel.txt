@@ -1,0 +1,77 @@
+SPICKZETTEL:
+
+
+Class => 	defines a concept (has methods) 					::create  = erstellen
+			written CamelCase
+			has many instances
+			::Klasse aufrufen = var = Klasse.new
+
+Object => 	single instance of Class, 
+			Class is the classification and an object is an actual Object or the thing itself
+
+Variable => placeholder for a single Object (Number, Strings, Arrays, Text, Object)  ::assign = zuweisen
+				local Variable =>
+				instance Variable => @, relevant in one Object, define characteritics of a single object 
+
+Method => 	Verbs, 
+			set of code, 
+			within a class or/and object,
+			call it with .method, 
+			def ... end,
+			::Methode aufrufen = Name der Methode
+			::Methode auf Klasse aufrufen = class.methode
+
+
+Hash => 	Dicionary with keys and value {:a => "b"}
+
+Array => 	list of things [a, b]
+			Collection of Objects
+			::Array aufrufen = Name des Arrays
+
+Block 		=> Anweisungsgruppierung ( grouping statements)
+			=> loops
+			⁼> do ... end or { ... }   inside is an nameless method
+Block Variable => pass arguments	|x|	
+
+
+ 
+
+String => 	Collection of Characters surrounded by quotes
+
+Numbers => 	Integers
+
+Arguments => data passed to methods in patentheses
+
+Parameters => recieved by methods
+
+control flow =>
+				if ...elsif... else... end
+				unless ... end
+				while ... end
+
+
+method on arrays =>
+			- with ! it stays, you can do shuffle!.pop
+			- with ? return true or false
+
+			.select or
+			.find all	(returns array containing all elements for which block is not false)
+			.detect or 
+			.find		(returns the first on, for which block not false)
+			.collect or
+			.map        (returns new array with results of running block for every element)
+			.reject		(returns the element for which the block is not true)
+
+			.first 		(returns the first element)
+			.last
+			.each	 	(invokes the code block for each element)
+			.pop 		(remove the last element and returns it)
+			.shift 		(remove the first element and returns it)
+			.push or << (appends the object to the array)
+			.shuffle	(mixing)
+
+			.include?   (true, if given object is present)	
+			.all?		(true, if block never returns false or nil)
+			.any?		(true, if block ever returns a value other than false or nil)
+			.none?		(true, if block never returns true)
+			
