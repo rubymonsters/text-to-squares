@@ -1,4 +1,8 @@
 class Switch
+  # attr_reader :state
+  # attr_writer :state
+  attr_accessor :state
+
   def initialize(state)
     @state = state
   end
