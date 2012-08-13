@@ -1,27 +1,20 @@
 class Switch
-  # attr_reader :state
-  # attr_writer :state
-  attr_accessor :state
-
-  def initialize(state)
-    @state = state
+  def initialize
+    @state = false
   end
 
-  def state
-    @state
+  def flip
+    # toggle the state
   end
 
-  def state=(state)
-    @state = state
+  def turn_off
+    @state = false
+  end
+
+  def turn_on
+    @state = true
   end
 end
 
-switch = Switch.new :off
-
-# let's set the internal state of the
-# switch to :on
-switch.state = :on
-
-# that's the same as this:
-# switch.state=(:on)
-
+switch = Switch.new
+switch.turn_on
