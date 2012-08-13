@@ -7,20 +7,17 @@ class Switch
     @state
   end
 
-  def flip
-    if @state == :off
-      @state = :on
-    else
-      @state = :off
-    end
-
-    # could also use a ternary operator:
-    # @state = @state == :off ? :on : :off
+  def state=(state)
+    @state = state
   end
 end
 
-switch = Switch.new(:off)
+switch = Switch.new :off
+
 # let's set the internal state of the
 # switch to :on
-switch.flip
+switch.state = :on
+
+# that's the same as this:
+# switch.state=(:on)
 
