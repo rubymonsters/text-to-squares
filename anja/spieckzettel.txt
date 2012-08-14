@@ -57,10 +57,10 @@ method on arrays =>
 			.select or
 			.find all	(returns array containing all elements for which block is not false)
 			.detect or 
-			.find		(returns the first on, for which block not false)
+			.find		(returns the first on, for which block not false)(
 			.collect or
 			.map        (returns new array with results of running block for every element)
-			.reject		(returns the element for which the block is not true)
+			.reject		(returns the element for which the block is not true)(array)
 
 			.first 		(returns the first element)
 			.last
