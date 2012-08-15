@@ -1,0 +1,35 @@
+most important concepts and terms
+
+class
+Die Basisklasse in Ruby heißt "Object", von der alle anderen abgeleitet werden.
+Eine Klasse ist selbst ein Objekt und die Instanz einer Klasse ist auch ein Objekt dieser Klasse.
+Wird eine Klasse abgeleitet, erbt sie alle Methoden der Eltern-Klasse, die überschrieben werden können.
+Ein string ist z.B. ein Objekt der Klasse "String".
+
+method
+what's special about new and initialize? Wenn ein Objekt mit 'new' erzeugt wird, wird immer zuerst die 'initialize'-Methode aufgerufen, die immer existiert. Wenn ich sie definiere, überschreibe ich damit die vordefinierte (leere) Methode. arguments you supply to new are actually delivered to initialize
+return values: Der zuletzt ausgewertete Ausdruck wird zurückgegeben, "return" ist nicht erforderlich.
+Wenn ein Methodenname mit einem Fragezeichen endet, liefert die Methode einen booleschen Wert zurück: true oder false.
+arguments (default value, splat): Einer Methode können Default-Argumente übergeben werden: xy(arg=3), Variable Argumente -> * zum splat operator:
+http://raflabs.com/blogs/silence-is-foo/2010/08/07/ruby-idioms-what-is-the-splatunary-operator-useful-for/
+
+variable (local, instance)
+Instanzvariablen (müssen nicht deklariert werden) sind Variablen eines Objekts, ihr Geltungsbereich ist auf das Objekt begrenzt. 
+Lokale Variablen haben nicht den Wert 'nil' vor ihrer Initialisierung, wie globale und Instanzvariablen. Sie existieren nur in der Methode, in der sie defieniert werden.
+
+Objekte -> Substantive
+Methoden -> Verben
+Parameter -> Adverbien
+
+Rückgabewerte und Parameterübergabe
+if, else, unless (wenn nicht)
+<< fügt einem Array ein neues Element hinzu
+
+block - method, that don't have a name <- anonymus method
+the argument list appears between vertical bars
+
+countries.each do |c| <- Argument (like a local variable)
+ puts "#{c.name} is sad" unless c.happy?
+end
+
+
