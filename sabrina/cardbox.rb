@@ -41,7 +41,7 @@ end
 mycard = Cardbox.new
 mycard.show_card
 
-#show_card can be called directly, because 'new' returns the object (and calls the method initialize)
+# show_card can be called directly, because 'new' returns the object (and calls the method initialize)
 # wenn ich show_card direkt hinter new aufrufe, kann ich mit mycard keine weitere Methode aufrufen
 
 mycard.edit_card('edited question', 'edited answer') # broken
