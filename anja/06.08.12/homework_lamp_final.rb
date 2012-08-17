@@ -30,17 +30,18 @@ end
 class Lamp
   def initialize
     @bulb = Bulb.new.status
+    @switch = Switch.new
   end
 
   def turn_light_on
-    if @bulb == :on
-      puts "The light turns on."
-    elsif @bulb == :off
-      puts "The light turns off."
+    if @switch.state = :on
+      @bulp.on
+    elsif @switch.state = :off
+      @bulb.off
     else
-      puts "Nothing worked"
+      puts "Doesnt work!"
     end
-  end
+  end    
 end
 
 class Switch
@@ -80,3 +81,15 @@ end
 
 Anja = Person.new("Anja")
 Anja.enter_room
+
+
+
+
+if @bulb == :on
+      puts "The light turns on."
+    elsif @bulb == :off
+      puts "The light turns off."
+    else
+      puts "Nothing worked"
+    end
+  end
