@@ -36,7 +36,7 @@ class Player
   end
   
   def self.names
-    @names ||= ["Anja", "Maren", "Rebecca", "Sabrina"]
+    @names ||= ["Anja", "Maren", "Rebecca", "Sabrina", "Ute"]
   end
   
   attr_reader :name, :role
