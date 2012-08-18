@@ -22,6 +22,55 @@ class Dough
   end
 end
 
+class DoughTest < Test::Unit::TestCase
+  def test_creation
+    dough = Dough.new([:flour, :eggs, :sugar, :butter])
+    assert dough, 'create a dough instance'
+  end
+
+  def test_a_dough_which_was_passed_eggs_should_have_eggs
+    dough = Dough.new([:eggs])
+    assert dough.has?(:eggs), 'should have eggs'
+  end
+  
+  def test_a_dough_which_was_not_passed_milk_shouldnt_have_milk
+    dough = Dough.new([:flour])
+    assert !dough.has?(:milk), 'should not have milk'
+  end
+  
+  def test_dough_which_contains_flour_should_be_vegan
+    dough = Dough.new([:flour])
+    assert dough.vegan?, 'should be vegan'
+  end
+  
+  def test_dough_which_contains_eggs_Shoudnt_be_vegan
+    dough = Dough.new([:eggs])
+    assert !dough.vegan?, 'should not be vegan'
+  end
+end
+
+# These tests still need to be ported to test/unit:
+#
+# # Vegan should allow :flour
+# if Vegan.allowed?(:flour)
+#   puts "success: Vegan allows flour"
+# else
+#   puts "failure: Vegan does not allow flour"
+# end
+# 
+# # Vegan shoud not allow :eggs
+# unless Vegan.allowed?(:eggs)
+#   puts "success: Vegan does not allow eggs"
+# else
+#   puts "failure: Vegan allows eggs"
+# end
+# 
+# 
+# 
+# 
+# 
+
+
 # class Waffle
 #   attr_reader :dough
 #   
@@ -86,80 +135,32 @@ end
 #     "Put  #{@topping}  on the waffle!"
 #   end
 # end
-
-
-class DoughTest < Test::Unit::TestCase
-  def test_creation
-    dough = Dough.new([:flour, :eggs, :sugar, :butter])
-    assert dough, 'create a dough instance'
-  end
-
-  def test_a_dough_which_was_passed_eggs_should_have_eggs
-    dough = Dough.new([:eggs])
-    assert dough.has?(:eggs), 'should have eggs'
-  end
-  
-  def test_a_dough_which_was_not_passed_milk_shouldnt_have_milk
-    dough = Dough.new([:flour])
-    assert !dough.has?(:milk), 'should not have milk'
-  end
-  
-  def test_dough_which_contains_flour_should_be_vegan
-    dough = Dough.new([:flour])
-    assert dough.vegan?, 'should be vegan'
-  end
-  
-  def test_dough_which_contains_eggs_Shoudnt_be_vegan
-    dough = Dough.new([:eggs])
-    assert !dough.vegan?, 'should not be vegan'
-  end
-end
-
-
-# # Vegan should allow :flour
-# if Vegan.allowed?(:flour)
-#   puts "success: Vegan allows flour"
-# else
-#   puts "failure: Vegan does not allow flour"
-# end
 # 
-# # Vegan shoud not allow :eggs
-# unless Vegan.allowed?(:eggs)
-#   puts "success: Vegan does not allow eggs"
+# 
+# dough = Dough.new(ingredients)
+# if dough.has?(:milk)
+#   puts "has milk"
 # else
-#   puts "failure: Vegan allows eggs"
+#   puts "has no milk"
 # end
 # 
 # 
 # 
+# iron = Iron.new
+# iron.heatup
+# iron.receive(dough)
+# # iron.ready?
+# #else
+# #  puts "not ok"
+# #end
+# waffle = iron.bake
 # 
+# if waffle.done?
+#   toppings = [:chocolate, :marmelade, :fruits]
+#   topping = Topping.new(toppings)
+#   p topping.place 
+# else
+#   puts "No waffle done"
+# end
+# p waffle.dough.ingredients
 # 
-# 
-# 
-# # dough = Dough.new(ingredients)
-# # if dough.has?(:milk)
-# #   puts "has milk"
-# # else
-# #   puts "has no milk"
-# # end
-# 
-# 
-# 
-# # iron = Iron.new
-# # iron.heatup
-# # iron.receive(dough)
-# # # iron.ready?
-# # #else
-# # #  puts "not ok"
-# # #end
-# # waffle = iron.bake
-# # 
-# # if waffle.done?
-# #   toppings = [:chocolate, :marmelade, :fruits]
-# #   topping = Topping.new(toppings)
-# #   p topping.place 
-# # else
-# #   puts "No waffle done"
-# # end
-# # p waffle.dough.ingredients
-# # 
