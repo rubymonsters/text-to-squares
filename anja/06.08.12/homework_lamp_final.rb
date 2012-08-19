@@ -5,6 +5,10 @@ class Person
     @lamp = Lamp.new
   end
 
+  def room
+    @room
+  end
+
   def enter_room
     puts @name + " goes into the " + @room + "."
     flip_switch
@@ -29,18 +33,25 @@ end
 
 class Lamp
   def initialize
-    @bulb = Bulb.new.status
+    @bulb = Bulb.new
     @switch = Switch.new
   end
 
   def turn_light_on
-    if @switch.state = :on
-      @bulp.on
-    elsif @switch.state = :off
-      @bulb.off
-    else
-      puts "Doesnt work!"
+    i = 0
+    while i < 2 do
+      @switch.flip
+      if @switch.state == :on
+        @bulb.on     
+      elsif @switch.state == :off
+        @bulb.off
+      else
+        puts "Doesnt work!"
+      end
+      puts "You flip the switch again"
+    i += 1
     end
+    @bulb.broken
   end    
 end
 
@@ -66,30 +77,20 @@ end
 
 class Bulb
   def initialize
-    @switch = Switch.new.flip
-    @bulb ||= :off
   end
 
-  def status
-    if @switch == :on
-      @bulb = :on
-    else 
-      @bulb = :off
-    end
+  def on
+    puts "The light is on"
+  end
+
+  def off
+    puts "The light is off"
+  end
+
+  def broken
+    puts "Great, no the bulb is broken!"
   end
 end
 
 Anja = Person.new("Anja")
 Anja.enter_room
-
-
-
-
-if @bulb == :on
-      puts "The light turns on."
-    elsif @bulb == :off
-      puts "The light turns off."
-    else
-      puts "Nothing worked"
-    end
-  end
