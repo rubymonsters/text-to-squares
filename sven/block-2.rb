@@ -46,7 +46,7 @@ class Player
   end
 
   def self.names
-    @names ||= ["Anja", "Sabrina", "Rebecca", "Maren"]
+    @names ||= ["Anja", "Sabrina", "Ute", "Rebecca", "Maren"]
   end
   
   def self.count
@@ -66,6 +66,6 @@ class Player
   end
 end
 
-game = Game.new(8)
+game = Game.new(10)
 game.print_rules
 game.start
