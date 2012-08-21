@@ -1,13 +1,4 @@
-require "test/unit"
-
-#Person knows about watering_can and plant
-#case the plant is dry, Person waters the plant
-
-
-#plant has state: dry or wet
-#if plant wet for a longer term => plant is growing
-
-#watering_can pours water
+require 'test/unit'
 
 class Person
 
@@ -31,11 +22,23 @@ end
 
 class WateringCan
 
-  def pour_water  #pour water if plant dry
+  def pours_water  #pour water if plant dry
   end
 
 end
 
 class WateringTest < Test::Unit::TestCase
-  
+  def test_name
+    anja = Person.new("Anja")
+    assert anja, 'create a Person named Anja'
+    
+  end
 end
+
+#Person knows about watering_can and plant
+#def watering: if the plant is dry, Person waters the plant else the person ignores the plant
+
+#def status: plant has state: dry or wet if wet turn dry, if dry turn wet
+#def growing: if plant wet for a longer term => plant is growing
+
+#def pours_water: pours water
