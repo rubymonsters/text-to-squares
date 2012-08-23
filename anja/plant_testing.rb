@@ -2,6 +2,8 @@ require 'test/unit'
 
 class Person
 
+  attr_reader :name
+
   def initialize(name) #name der person
     @name = name
   end
@@ -30,7 +32,7 @@ end
 class WateringTest < Test::Unit::TestCase
   def test_name
     anja = Person.new("Anja")
-    assert anja, 'create a Person named Anja'
+    assert anja.name, 'create a Person named Anja'
     
   end
 end
