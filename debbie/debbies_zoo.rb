@@ -68,8 +68,8 @@ end
 #question debbie: how to tell him to print the result of the any ?
 
 
-zoo_hasonly_biganimals.each do |c|
- puts c.name
+animals.each do |c|
+ puts "#{c.name} is big" if c.big?
 end
 
 #use none?
