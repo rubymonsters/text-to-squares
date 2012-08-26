@@ -1,3 +1,45 @@
+class Foo
+  def initialize (state)
+    @state = state
+  end
+  
+  #attribute reader
+  def state
+    @state
+  end
+  # attr_reader : state
+  
+  #attribute writer
+    def state = (state)
+      @state = state      
+    end
+end
+
+  
+  def flip
+    if @state == :off
+      @state = :on
+    else state = :off
+    end
+    #could also use ternary
+    @state == (@state == :off ?) : on : :off
+  end
+end
+
+switch = Switch.new (:off)
+if switch.state == :on
+  puts 'the switch is on'
+else
+  puts 'the switch is off'
+end
+
+#internal state of switch
+#switch to :on
+switch.flip 
+---------------------------------------------------------------------
+
+
+
 class Animal
   def initialize(options ={})
     @name = options[:name]
@@ -50,9 +92,8 @@ end
 animals.each {|c| puts "The #{c.name} is very small" unless c.big?}
 
 #use all
-zoo_is_hungry = animals.all? do |c|
+zoo_is_hungry = animals.all? |c|
  c.hungry?
-end
 
 
 if zoo_is_hungry
@@ -62,20 +103,18 @@ else
 end
 
 #use any
-zoo_hasonly_biganimals = animals.any? do |c|
+zoo_hasonly_biganimals = animals.any? |c|
 c.big?
-end
-#question debbie: how to tell him to print the result of the any ?
 
 
 zoo_hasonly_biganimals.each do |c|
  puts c.name
 end
+#question debbie: how to tell him to print the result of the any ?
 
 #use none?
-zoo_isnot_hungry = animals.none? do |c|
+zoo_isnot_hungry = animals.none? |c|
  c.hungry?
-end
 
 if zoo_isnot_hungry
   puts "None of the animals are hungry"
