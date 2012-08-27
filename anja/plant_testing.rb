@@ -18,7 +18,7 @@ class Person
 
   def give_water
     if need_to_water?
-      @plants.status = :wet
+      WateringCan.pours_water
     end
   end
 
@@ -43,7 +43,7 @@ end
 
 class WateringCan #could also be self class
   def self.pours_water  #pour water if plant dry
-    true
+    @plants.status = :wet
   end
 end
 
@@ -66,16 +66,16 @@ class PersonTest < Test::Unit::TestCase
     basilikum = Plant.new("Basilikum")
     gardener.add_plant(basilikum)
     basilikum.status = :dry
+    
     assert_equal gardener.need_to_water?, true
   end
 
-  def give_water
-     gardener = Person.new("X")
+  def test_give_water
+    gardener = Person.new("X")
     basilikum = Plant.new("Basilikum")
     gardener.add_plant(basilikum)
-    basilikum.status = :dry
-
-    assert_equal gardener.give_water, basilikum.status == :wet
+    
+    assert_equal gardener.give_water, basilikum.status = :wet
   end
 end
 
