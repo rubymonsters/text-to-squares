@@ -1,0 +1,156 @@
+
+CLASS
+A class is like a container( a factory)  that holds a building plan for a certain kind of objects that are going 
+to be created from it. Class Car will give birth to cars that show certain attributes and behavior for example. 
+A class needs variables and methods to produce. Variables represent the inner state and the methods are 
+the behavior. 
+
+
+
+INITIALIZED METHOD
+initialize sets the state of the class and is the first called method ( if available) if a Object.new is created. 
+It takes the arguments from the new method which will then be stored in instance variables, which then again 
+can be used by methods within the class. 
+
+class Song 
+   def initialize(a, b, c) 
+      @a = a 
+      @b = b 
+      @c = c 
+    end 
+end
+
+object1 = Object.new("a", "b", c)
+
+
+
+INSTANCE VARIABLES
+@name
+usually  we set and initialize all the instance variables in the initialize method of the class. 
+Instance variables represent the state of the objects (age, gender, name). Characteristics that should 
+be remembered for each created object as long as the object exist (for a momentary storage we use local 
+variables instead). 
+You can store info in an instance variable and have it used  by other methods within the class. 
+You cannot access the instance variable from outside the class unless you declare accessor methods (?).
+
+
+
+LOCAL VARIABLES
+To store (temporary) data. Variables are created by assigning them to a value:
+number = 2
+if you now look at the variable you are actually looking at the number 2 it holds the 2 until you assign it to 
+something else. 
+
+eins = 1
+zwei = 2
+eins + zwei 
+
+3
+
+
+
+METHODS
+.reverse  (calling a method)
+
+Methods "do" things. They are the verbs of the object (noun). We can create methods to get a clock ticking 
+or the dog running . When called it will return the last line in the body part. 
+
+   def tick         
+      puts "tick tack"
+   end
+
+   def calculate (a + b)
+      puts a + b
+   end
+
+
+
+ATTR_ACCESSOR (attr_reader / attr_writer)
+to define an instance variable and create read/write methods to access it. It also saves writing time. 
+
+attr_accessor :name
+is the same as: 
+
+  def name  
+     @name
+  end
+
+  def name=(name) 
+    @name = name
+  end
+
+
+
+ARRAYS
+numbers = [three, two, one]
+
+Arrays are lists of things and will be used a  LOT. 
+You can order, sort,  collect, pull, add, remove date and do all kinds of things using array methods. 
+
+Link to array methods: http://ruby-doc.org/core-1.9.3/Enumerable.html#method-i-group_by
+
+
+
+HASH
+A dictionary that holds items (key) and it´s "explanations" (value). For example a restaurant menu that holds 
+the menu names and it´s prices:
+
+restaurant_menu = { "Burger" => 3, "Pizza" => 10, "Coffee" => 2}
+
+
+
+LOOPING/ ITERATOREN
+to execute a block of code a certain number of times ( also under certain conditions (true/false)).
+
+While
+3.times do
+.each
+if /else
+Unless (if-not)
+^^alternative to if/else
+
+
+
+ARGUMENTS (in parenthesis)
+value passed to a method parameter when you call the method. 
+
+
+
+PARAMETERS (in parenthesis)
+value that the method expects you to pass when you call it.
+
+
+
+BLOCK
+method { |x, y| puts x, y }
+code between braces or or between do- end (multi-line blocks). Grouping statements / instructions.
+
+
+
+BOOLEAN  (true/false) expressions
+&& means "and"
+|| means "or"
+! means "not"
+
+
+
+NUMBERS/LETTERS
+Numbers:
+Integers (ganze Zahlen Ruby rounds them down)
+Floats (Dezimalzahlen)
+
+Strings:
+Letters are "strings" in quotes and can also include: punctuation, digits, symbols and spaces:
+"Hello #%^?&*5345@!, how are you?"
+
+.to_s gives the string version
+.to_i gives the integer version 
+.to_f gives the float version
+
+
+
+
+
+… to be continued. 
+
+

@@ -1,69 +1,85 @@
-#creating dogs and let them ask a question
 
 class Dogs
-  def initialize (options ={})
-    @name = options [:name]
-    @happy = options [:happy]
-    @sad = options [:sad]
-    @speak = options [:speak]
+  def initialize(name, gender, age, *look)
+    @name = name
+    @gender = gender
+    @age = age
+    @look = look
+    @petted = 0
+
+    puts "Dog #{@name} is created.Times petted yet: #{@petted} times"
   end
 
-  def introduce
-  puts @speak
-  puts  "My name is " + @name.upcase + " and the name is " + @name.length.to_s + " characters long."
+  def name
+    @name
   end
 
-  def look(*look)   
-    puts "More important facts about me:"
-  look.each do |look|
-    puts "I am " + look + "!"
+  def introduction
+    puts "#{@name} is #{@gender}, #{@age} years old, #{@look.join(", ")}"
+  end
+
+  def pet
+    @petted = @petted + 1
+    puts "#{@name} is petted!"
+  end
+
+  def petted
+    @petted
+  end
+
+  def happy?
+    petted > 0
   end
 
   def happy
-  @happy
+    puts "#{@name} makes a handstand"
   end
 
-  def sad
-  @sad
+  def unhappy
+    puts "#{@name} howls like a wolve"
   end
 
-  def speak
-    @speak
+  def reaction
+   happy? ? happy : unhappy
   end
-
-  def behaviour
-    
-    puts "Will you pet me?"
-  	reply = gets.chomp.downcase
-
-  	if reply == "yes"
-   3.times do 
-   puts @speak + ". " + @name + " is " + @happy 
-   end
-   puts "[" + @name + " jumps on your lap and you are friends forever]"
-
-elsif reply == "no" 
-	puts "'Roaaarrrrr' [" + @name + " is " + @sad + " and attacks you! Better run!]"
-	else puts "Please type 'yes' or 'no'." 
-		behaviour
-		end
-   end
-end
 end
 
 
-doodle = Dogs.new(:name => 'Doodle',:happy => "happy", :sad => "sad",:speak => "'Wau Wau'")
-bingo = Dogs.new(:name => 'Bingo', :happy => "happy", :sad => "sad", :speak => "'Bow Wow'")
+bingo = Dogs.new('Bingo', "male", 7, "hairy", "clumsy", "furious" )
+doodle = Dogs.new('Doodle', "female", 2, "nosy", "fast", "playful")
+puck = Dogs.new('Puck', "male", 4, "deceitful", "snobbish", "fat")
 
+dogs = [bingo, doodle, puck]
 
-doodle.introduce
-doodle.look("from Germany", "hairy", "clumsy", "slow", "furious",)
-doodle.behaviour
+dogs.each do |dog|
+  dog.introduction
+end
 
-bingo.introduce
-bingo.look( "from England", "big", "fast", "smart", "loyal")
-bingo.behaviour
+5.times do
+  dogs.each { |dog| dog.pet if rand > 0.5 }
+end
 
-#question: how can I have both (all that are created) dogs "speak" in turns?
+dogs = dogs.sort_by { |dog| dog.petted }
+dogs.each do |dog|
+  puts "#{dog.name} was petted #{dog.petted} times"
+end
 
+dog = dogs.last
+puts "#{dog.name} was petted most often and is quite a happy chap"
+#last dog is always chosen from the list, even if all dogs were petted 0 times.
+#Since that makes no sense I have to find a way to print this only under certain circumstances. 
+
+dogs.each do |dog|
+  "#{dog.reaction}"
+end
+#have to figure out why I can´t put this reaction part at the end
+#of the code: because then sometimes one dog´s reaction is not showing up. 
+
+groups= dogs.group_by { |dog| dog.petted }.select { |k, v| v.size > 1 }
+#Collecting equal numbers (if there are any). Still have to check what the .select method is 
+#exactly doing and why it must be > 1.
+groups.each do |petted, dogs|
+  names = dogs.map { |dog| dog.name }
+  puts "#{names.join(", ")} were equally petted #{petted} times. What a coincidence! "
+end
 
