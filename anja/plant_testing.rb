@@ -1,39 +1,51 @@
 require 'test/unit'
 
 class Person
-  attr_reader :name, :basilikum
+  attr_reader :name, :plants
 
   def initialize(name)
-    @basilikum    = Plant.new
-    @name         = name
+    @plants = []
+    @name   = name
   end
 
-  def need_to_water?  #case plant = dry => pour water
-    if @basilikum.status == :dry 
-     WateringCan.pours_water                  
-    else
-      puts "The plant is still wet."                 #möchte hier puts aufrufen, wie teste ich das?
+  def add_plant(some_plant)
+    @plants << some_plant
+  end
+
+  def need_to_water?
+    @plants.any? { |p| p.status == :dry}
+  end
+
+  def give_water
+    if need_to_water?
+      @plants.status = :wet
     end
   end
+
 end
 
 class Plant
-  attr_reader :status
+  attr_reader :status, :name
+  attr_writer :status
 
-  def status    #check if dry or not
-    :dry
+  def initialize(plant_name)
+    @name   = plant_name
+    @size   = 1
+    @status = :dry
   end
 
   def grow        #if wet => grow
+    if status = :wet
+      @size = @size + 1  # += 1
+    end
   end
 end
 
 class WateringCan #could also be self class
   def self.pours_water  #pour water if plant dry
-    puts "The watering can pours water."
+    true
   end
 end
-
 
 
 class PersonTest < Test::Unit::TestCase
@@ -42,15 +54,28 @@ class PersonTest < Test::Unit::TestCase
     assert gardener.name, 'create a Person named gardener'
   end
 
+  def test_add_plant
+    gardener = Person.new("X")
+    basilikum = Plant.new("Basilikum")
+    gardener.add_plant(basilikum)
+    assert_equal gardener.plants.length, 1
+  end
+
   def test_need_to_water?
     gardener = Person.new("X")
-    if gardener.basilikum.status == :dry
-      assert_equal(WateringCan.pours_water, gardener.need_to_water?)
-      # assert gardener.need_to_water?, 'true if plant dry'
-    elsif gardener.basilikum.status == :wet
-      assert_not_equal(WateringCan.pours_water, gardener.need_to_water?)
-      # assert !gardener.need_to_water?, 'false if plant not dry'
-    end
+    basilikum = Plant.new("Basilikum")
+    gardener.add_plant(basilikum)
+    basilikum.status = :dry
+    assert_equal gardener.need_to_water?, true
+  end
+
+  def give_water
+     gardener = Person.new("X")
+    basilikum = Plant.new("Basilikum")
+    gardener.add_plant(basilikum)
+    basilikum.status = :dry
+
+    assert_equal gardener.give_water, basilikum.status == :wet
   end
 end
 
@@ -62,9 +87,14 @@ class WateringCanTest < Test::Unit::TestCase
 end
 
 class PlantTest < Test::Unit::TestCase
-  def test_plant_status
-    basilikum = Plant.new
-    assert basilikum.status
+  def test_plant_name
+    basilikum = Plant.new("Basilikum")
+    assert_equal basilikum.name, "Basilikum"
+  end
+
+  def test_plant_grows
+    basilikum = Plant.new("Basilikum")
+    assert_equal basilikum.grow, 2
   end
 
   # def test_plant_grow_if_plant_wet
@@ -73,19 +103,3 @@ class PlantTest < Test::Unit::TestCase
   # def test_plant_grow_if_plant_dry
   # end
 end
-
-
-  # def test_plant_grow_if_plant_wet
-  # end
-
-  # def test_plant_grow_if_plant_dry
-  # end
-
-
-#Person knows about watering_can and plant
-#def watering: if the plant is dry, Person waters the plant else the person ignores the plant
-
-#def status: plant has state: dry or wet if wet turn dry, if dry turn wet
-#def growing: if plant wet for a longer term => plant is growing
-
-#def pours_water: pours water
