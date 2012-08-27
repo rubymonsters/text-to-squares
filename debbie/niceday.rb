@@ -1,24 +1,23 @@
 require 'test/unit'
 
-class Niceday
- def self.allowed?(status)
-   not [:rainy, :snowy, :cloudy, :stormy].include?(status)
- end
-end
 
 class Day
-  attr_reader:statuses
-  
-  def initialize (statuses)
-    @statuses = statuses
+  def self.nice?(status)
+    not [:rainy, :snowy, :cloudy, :stormy].include?(status)
   end
+  
+  attr_reader :statuses
+  
+  def initialize(statuses)
+    @statuses = statuses
+  end 
   
   def is?(status)
     statuses.include?(status)
   end
   
-  def niceday?
-    statuses.all?{|status| Niceday.allowed?(status)}
+  def nice?
+    statuses.all?{|status| self.class.nice?(status)}
   end
 end
 
@@ -40,11 +39,11 @@ class DayTest < Test::Unit::TestCase
   
   def test_a_day_which_was_passed_sun_should_be_a_niceday
     day = Day.new([:sunny])
-    assert day.niceday?, 'should be a niceday'
+    assert day.nice?, 'should be a niceday'
   end
   
   def test_a_day_which_was_passed_storm_should_not_be_a_niceday
     day = Day.new([:stormy])
-    assert !day.niceday?, 'should not be a niceday'
+    assert !day.nice?, 'should not be a niceday'
   end
 end
