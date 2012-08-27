@@ -2,22 +2,20 @@ require 'test/unit'
 
 class Person
   def initialize(name)
-    @basilikum = Plant.new
-    @watering_can = WateringCan.new
-    @name = name
+    @basilikum    = Plant.new
+    @name         = name
   end
 
-  attr_reader :name
+  attr_reader :name, :basilikum
 
   def need_to_water?  #case plant = dry => pour water
     if @basilikum.status == :dry 
-      WateringCan.pours_water
+     WateringCan.pours_water                  
     else
-      puts "The Plant has enough water!"
+      puts "The plant is still wet."                 #möchte hier puts aufrufen, wie teste ich das?
     end
   end
 end
-
 
 class Plant
   attr_reader :status
@@ -46,18 +44,16 @@ class WateringTest < Test::Unit::TestCase
   end
 
   def test_need_to_water?
-    gardener = Person.new("Gardener")
+    gardener = Person.new("X")
     if gardener.basilikum.status == :dry
-      assert gardener.pours_water, 'takes the can and gives water to the plant,if plant is dry'
+      assert_equal(WateringCan.pours_water, gardener.need_to_water?)
+      # assert gardener.need_to_water?, 'true if plant dry'
+    elsif gardener.basilikum.status == :wet
+      assert_not_equal(WateringCan.pours_water, gardener.need_to_water?)
+      # assert !gardener.need_to_water?, 'false if plant not dry'
+
     end
   end
-
-  # def test_watering_if_plant_wet
-  #   gardener = Person.new("Gardener")
-  #   if @basilikum.status != :dry
-  #     assert puts "The Plant has enough water!", 'takes the can and gives water to the plant,if plant is dry'
-  #   end
-  # end
 
   def test_wateringCan
     watering_can = WateringCan.new
