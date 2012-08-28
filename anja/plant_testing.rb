@@ -20,9 +20,7 @@ class Person
     if need_to_water?    #sollte true rauskommen
       @plants.each do |p|
         p.status = :wet
-      # @dry_plant = @plants.select {|p| p.status == :dry}   #alles planzen raussuchen, 
-      # @dry_plant.each { |p| p.water}                        #die trocken sind und dann gießen
-    end
+      end
     end
   end
 
