@@ -1,11 +1,11 @@
-require 'test/unit'
+
 
 class Person
   attr_reader :name, :plants
 
   def initialize(name)
-    @plants = []
-    @name   = name
+    @plants     = []
+    @name       = name
   end
 
   def add_plant(some_plant)
@@ -13,12 +13,16 @@ class Person
   end
 
   def need_to_water?
-    @plants.any? { |p| p.status == :dry}
+    @plants.any? { |p| p.status == :dry}    #sollte true rauskommen
   end
 
-  def give_water
-    if need_to_water?
-      WateringCan.pours_water
+  def water
+    if need_to_water?    #sollte true rauskommen
+      @plants.each do |p|
+        p.status = :wet
+      # @dry_plant = @plants.select {|p| p.status == :dry}   #alles planzen raussuchen, 
+      # @dry_plant.each { |p| p.water}                        #die trocken sind und dann gießen
+    end
     end
   end
 
@@ -34,72 +38,16 @@ class Plant
     @status = :dry
   end
 
+  def gets_water
+    @status = :wet
+  end
+
   def grow        #if wet => grow
-    if status = :wet
+    if @status == :wet        #wie geht das besser?
       @size = @size + 1  # += 1
+    else
+      @size = @size
     end
   end
 end
 
-class WateringCan #could also be self class
-  def self.pours_water  #pour water if plant dry
-    @plants.status = :wet
-  end
-end
-
-
-class PersonTest < Test::Unit::TestCase
-  def test_name
-    gardener = Person.new("Gardender")
-    assert gardener.name, 'create a Person named gardener'
-  end
-
-  def test_add_plant
-    gardener = Person.new("X")
-    basilikum = Plant.new("Basilikum")
-    gardener.add_plant(basilikum)
-    assert_equal gardener.plants.length, 1
-  end
-
-  def test_need_to_water?
-    gardener = Person.new("X")
-    basilikum = Plant.new("Basilikum")
-    gardener.add_plant(basilikum)
-    basilikum.status = :dry
-    
-    assert_equal gardener.need_to_water?, true
-  end
-
-  def test_give_water
-    gardener = Person.new("X")
-    basilikum = Plant.new("Basilikum")
-    gardener.add_plant(basilikum)
-    
-    assert_equal gardener.give_water, basilikum.status = :wet
-  end
-end
-
-class WateringCanTest < Test::Unit::TestCase
-  def test_wateringCan
-    watering_can = WateringCan.new
-    assert watering_can, 'watering can does pour water'
-  end
-end
-
-class PlantTest < Test::Unit::TestCase
-  def test_plant_name
-    basilikum = Plant.new("Basilikum")
-    assert_equal basilikum.name, "Basilikum"
-  end
-
-  def test_plant_grows
-    basilikum = Plant.new("Basilikum")
-    assert_equal basilikum.grow, 2
-  end
-
-  # def test_plant_grow_if_plant_wet
-  # end
-
-  # def test_plant_grow_if_plant_dry
-  # end
-end
