@@ -30,10 +30,9 @@ class PersonTest < Test::Unit::TestCase
     gardener  = Person.new("X")
     basilikum = Plant.new("Basilikum")
     gardener.add_plant(basilikum)
-    basilikum.status = :dry
-    gardener.need_to_water?
+    gardener.water
     
-    assert_equal gardener.water, basilikum.status = :wet
+    assert basilikum.status == :wet  
   end
 end
 
