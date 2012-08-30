@@ -6,7 +6,8 @@ class WordToColor
   end
 
   def color_of_word
-    @word.gsub(/\b(a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z)\b/i) do |l|   #\b ? /i ?
+    @word.gsub(/\b(a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z)\b/i) do |l|   
+    #\b == matches a word boundary?  /i == case insesitive
     case l.downcase
       when "a"
         "antiquewhite"
@@ -26,8 +27,6 @@ class WordToColor
         "hotpink"
       when "i"
         "indian red"
-      when "j"
-        "no color found"
       when "k"
         "khaki"
       when "l"
@@ -55,9 +54,9 @@ end
 
 
 
-# puts "Write a word:"
+puts "Write a word:"
 
-# answer = WordToColor.new gets.chomp
+answer = WordToColor.new gets.chomp
 
-# puts answer.color_of_word
+puts answer.color_of_word
 
