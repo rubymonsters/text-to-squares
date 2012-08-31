@@ -1,23 +1,28 @@
-# Prepare
-# Come up with an idea for a program that contains at least two classes (a role playing game character)
-# Create an empty file, require "test/unit" and add empty class definitions for your new classes.
-# Write down your expectations about what the classes do in plain text/comments at the end of the file:
-# - How will the classes behave towards their outer world/each other?
-# - What will they expose, what behaviour will they offer?
-# Write down the method names as empty method definitions (including the arguments list) and add a comment to their body about what the method should do.
-# Create an empty test case class for each of your classes.
-# Run the file, it should print out the test output.
-# Commit and push this.
+# # # Prepare
+# # # Come up with an idea for a program that contains at least two classes (a role playing game character)
+# # # Create an empty file, require "test/unit" and add empty class definitions for your new classes.
+# # # Write down your expectations about what the classes do in plain text/comments at the end of the file:
+# # # - How will the classes behave towards their outer world/each other?
+# # # - What will they expose, what behaviour will they offer?
+# # # Write down the method names as empty method definitions (including the arguments list) and add a comment to their body about what the method should do.
+# # # Create an empty test case class for each of your classes.
+# # # Run the file, it should print out the test output.
+# # # Commit and push this.
 
 require "test/unit"
 
 
 class Person
-  attr_reader :name
+  attr_accessor :name, :state
+
 
   def initialize(name)
     @name = name
     @state = :sitting
+  end
+
+  def to_s
+  "#{@name}"
   end
 
   def dancing
@@ -31,89 +36,101 @@ end
 
 
 class Song
-  attr_reader :titles
-  
-  def initialize(titles)
-    @titles = titles
-    @state = :unplayed
+   attr_reader :name, :artist, :plays
+   @@plays = 0
+
+  def initialize(artist,name)
+    @artist = artist
+    @name = name
+    @plays = 0
+  end
+
+  def to_s
+    "#{@artist} by #{@name}"
   end
 
   def play
-    @state = :playing
-  end
-  
-  def play?
-    @state == :playing
+    @plays += 1
+    @@plays += 1 
   end
 end
 
 
 class Jukebox
-
-   def initialize
+  attr_reader :songs, :persons
+  
+  def initialize(songs)
+    @songs = songs
     @state = :off
+    @persons = []
   end
 
-  def on
-    @state = :on
-  end
-
-  def ready?
+  def on?
     @state == :on
   end
 
-  def receive(titles)
-    if ready?
-      @song = Song.new(titles)
-    else
-      puts "Can´t access playlist if jukebox is off "
+  def get_person(person)
+    @persons << person
+  end
+
+  def time_to_play?
+    @persons.any? { |person| person.state == :sitting} 
+  end
+
+  def time_to_play
+    if time_to_play?
+      play
+      @persons.each do |person|
+        person.state = :dancing
+      end
+    else 
+      puts "Everyone is already dancing!"
     end
   end
 
-  def play
-    if ready?
-      @song.play
-      @song
-    else
-      puts "Nothing to play"
+  def time_to_stop
+    if !time_to_play?
+      stop 
+      @persons.each do |person|
+        person.state = :sitting
+      end
+    else 
+      puts "Everyone is already sitting!"
     end
   end
 
-  def nice(name)
-    if play
-      @person = Person.new(name).dancing
-    else
-      puts "Jukebox is not ready yet"
-    end
+  def play   
+    @state = :on
+    puts "#{@persons}, here a song for you: #{@songs.shuffle.pop}"
   end
 
-  def mean(name)
-    if @person
-      @state = :off
-      "Your dancing bores me. No more songs for you. [jukebox goes offline]"
-    else
-      "Jukebox can only be mean if the person is dancing"
-    end
+  def stop
+    @state = :off
+    puts "#{@persons}, no more songs for you. I do not like the way you move."
   end
 end
 
 
-titles = ["...Girls Just Wanna Have Fun...", "...Someone That I Used To Know...", "...Hyper, Hyper...", "...Sweet Home Alabama..."].shuffle.pop
-song = Song.new(titles)
+# song1 = Song.new("♪♫...Girls Just Wanna Have Fun...♪♫", "Weird Al")
+# song2 = Song.new("♪♫...Hyper Hyper..♪♫", "Scooter")
+# song3 = Song.new("♪♫..Someone That I Used To Know...♪♫", "Gotye")
+# song4 = Song.new("♪♫...Blubb...♪♫", "Unkown Artist")
 
+# songs = [song1,song2,song3,song4]
 
-# jukebox = Jukebox.new
-# jukebox.on
-# p jukebox.ready?
-
-# jukebox.receive(titles)
-# song = jukebox.play
-# song.titles
-
+# jukebox = Jukebox.new(songs)
 # anna = Person.new("Anna")
-# p jukebox.nice(anna)
-# p jukebox.mean(anna)
-# p song.play?
+
+# jukebox.get_person(anna)
+# p anna.dancing?
+# p jukebox.time_to_play?
+# jukebox.time_to_play
+# p jukebox.on?
+# p anna.dancing?
+# jukebox.time_to_stop
+# p anna.dancing?
+# p jukebox.on?
+
 
 
 class PersonTest < Test::Unit::TestCase
@@ -137,101 +154,70 @@ end
 
 class SongTest < Test::Unit::TestCase
   def test_create_new_song
-    song = Song.new("...Hyper, Hyper...")
-    assert song, 'New song'
+    song = Song.new("...Hyper, Hyper...", "Artist")
+    assert song, 'Create new song'
   end
 
-  def test_song_playing?
-    song = Song.new("Song Title")
-    assert !song.play?, 'song is not playing yet'
-  end
-
-  def test_song_playing
-    song = Song.new("Song Title")
-    song.play
-    assert song.play?, 'song is playing now'
-  end
-
-  def test_song_still_playing_after_jukebox_offline?
-  #song cannot play if jukebox is offline/not ready
+  def test_song_count
+    song = Song.new("Song Title", "Artist")
+    11.times do song.play
+    end
+    assert_equal song.play, 12
   end
 end
 
 
 class JukeboxTest < Test::Unit::TestCase
   def test_create_jukebox
-    jukebox = Jukebox.new
-    assert jukebox, 'new Jukebox'
+    song1 = Song.new("name", "artist")
+    jukebox = Jukebox.new(song1)
+    assert jukebox, 'new jukebox'
   end
 
-  def test_jukebox_off?
-    jukebox = Jukebox.new
-    assert !jukebox.ready?, "jukebox is off"
-  end
-
-   def test_jukebox_on
-    jukebox = Jukebox.new
-    assert jukebox.on, "jukebox is on"
-  end
-
-    def test_jukebox_still_off?
-    jukebox = Jukebox.new
-    jukebox.on
-    assert jukebox.ready?, "jukebox is on and ready"
+  def test_create_on?
+    song1 = Song.new("name", "artist")
+    jukebox = Jukebox.new(song1)
+    assert jukebox.on? == false, 'jukebox is off'
   end
 
 
-  def test_jukebox_receives_titles
-    jukebox = Jukebox.new
-    jukebox.on
-    titles = ["title1", "title2", "title3", "title4"].shuffle.pop
-    assert jukebox.receive(titles), "jukebox receives titles"
+  def test_jukebox_person_dancing_to_song?
+    song1 = Song.new("name", "artist")
+    song2 = Song.new("name", "artist")
+    songs = [song1, song2]
+    jukebox = Jukebox.new(songs)
+    anna = Person.new("Anna")
+    jukebox.get_person(anna)
+    jukebox.time_to_play
+    assert anna.dancing? == true, 'jukebox plays a random song and anna is dancing'
   end
 
-  def test_jukebox_ready?
-    jukebox = Jukebox.new
-    jukebox.on
-    assert jukebox.ready?, "jukebox is ready to play"
+  def test_jukebox_stop
+    song1 = Song.new("name", "artist")
+    song2 = Song.new("name", "artist")
+    songs = [song1, song2]
+    jukebox = Jukebox.new(songs)
+    anna = Person.new("Anna")
+    jukebox.get_person(anna)
+    jukebox.time_to_play
+    jukebox.time_to_stop
+    assert jukebox.on? == false, 'jukebox is off and plays no more songs for anna'
   end
 
-  def test_jukebox_playing_song
-    jukebox = Jukebox.new
-    jukebox.on
-    titles = ["title1", "title2", "title3", "title4"].shuffle.pop
-    jukebox.receive(titles)
-    song = jukebox.play
-    song.titles
-    assert song.play, "plays a song"
+  def test_jukebox_stop
+    song1 = Song.new("name", "artist")
+    song2 = Song.new("name", "artist")
+    songs = [song1, song2]
+    jukebox = Jukebox.new(songs)
+    anna = Person.new("Anna")
+    jukebox.get_person(anna)
+    jukebox.time_to_play
+    jukebox.time_to_stop
+    assert anna.dancing? == false, 'after jukebox is off, anna is sitting again'
   end
-
-  def test_jukebox_nice
-    jukebox = Jukebox.new
-    jukebox.on
-    titles = ["title1", "title2", "title3", "title4"].shuffle.pop
-    jukebox.receive(titles)
-    song = jukebox.play
-    song.titles
-    assert jukebox.nice(name), "makes the person dance by playing a song"
-  end
-
-  def test_jukebox_mean
-    jukebox = Jukebox.new
-    jukebox.on
-    titles = ["title1", "title2", "title3", "title4"].shuffle.pop
-    jukebox.receive(titles)
-    song = jukebox.play
-    song.titles
-    jukebox.nice(name)
-    jukebox.mean(name)
-    assert jukebox.mean(name), "stops the music and shuts down"
- end
 end
 
 
-
-
-
-#create songs for the jukebox and have the jukebox play one song so that
-#a sitting person will start to dance. If the person starts to dance the jukebox
-#will shut down because it´s mean. 
-
+#jukebox takes a song array and plays a random song from that list if a person is sitting. 
+#if a song is played person is dancing.
+#if person is dancing jukebox goes off and plays no more songs. person is sitting again. 
