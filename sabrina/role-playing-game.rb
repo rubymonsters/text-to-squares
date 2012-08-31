@@ -48,6 +48,9 @@ class Character
   def use(item)
     # depending on what item is used, the specific activity improves
     # if the character uses an item for fighting the chance to win increases
+    if item.is_a? Weapon
+      @fight_skill += 1
+    end
   end
 end
 
@@ -57,15 +60,12 @@ class Equipment
   def initialize(status)
     @status = status
   end
-  
-  def status
-    # if equipment is broken it can't be used
-    # some idea for later: equipment can be used for learning magic spells or better fighting
-    if @status == 0
-      p "You can't use the item because it's broken"
-    else
-      @status
-    end
+end
+
+class Weapon < Equipment
+  def initialize(status)
+    super(status)
+    @damage = 10
   end
 end
 
@@ -92,25 +92,25 @@ class CharacterTest < Test::Unit::TestCase
   def test_eat_stamina_is_set_to_10_points
     character = Character.new(0, 1, 1)
     character.eat
-    assert_equal character.stamina, 10, 'characters stamina should be set to 10 points'
+    assert_equal 10, character.stamina, 'characters stamina should be set to 10 points'
   end
   
   def test_go_stamina_loses_1_point
     character = Character.new(10, 1, 1)
     character.go
-    assert_equal character.stamina, 9, 'characters stamina should loose 1 point'
+    assert_equal 9, character.stamina, 'characters stamina should loose 1 point'
   end
   
   def test_conjure_stamina_loses_2_points
     character = Character.new(10, 1, 1)
     character.conjure
-    assert_equal character.stamina, 8, 'characters stamina should loose 2 points'
+    assert_equal 8, character.stamina, 'characters stamina should loose 2 points'
   end
   
   def test_conjure_skill_increases_by_1_point
     character = Character.new(10, 1, 1)
     character.conjure
-    assert_equal character.conjure_skill, 2, 'characters conjure-skill should increase by 1 point'
+    assert_equal 2, character.conjure_skill, 'characters conjure-skill should increase by 1 point'
   end
   
   def test_fight
@@ -120,6 +120,10 @@ class CharacterTest < Test::Unit::TestCase
   
   def test_use
     # if the character uses an item the chance to win increases
+    character = Character.new(10, 1, 1)
+    sword = Weapon.new(10)
+    character.use(sword)
+    assert_equal 2, character.fight_skill, 'fight_skill should increases by using a sword'
   end
 end
 
@@ -131,13 +135,13 @@ class EquipmentTest < Test::Unit::TestCase
   end
   
   def test_status_is_0_it_can_not_be_used
-    equipment = Eqipment.new(0)
-    assert_equal equipment.status, 0, 'equipment can not be used because it is broken'
+    equipment = Equipment.new(0)
+    assert_equal 0, equipment.status, 'equipment can not be used because it is broken'
   end
 
   def test_status_is_not_0_it_can_be_used
-    equipment = Eqipment.new(10)
-    assert_not_equal equipment.status, 0, 'equipment can be used'
+    equipment = Equipment.new(10)
+    assert_not_equal 0, equipment.status, 'equipment can be used'
   end
 end
 
