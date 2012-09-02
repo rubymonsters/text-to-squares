@@ -6,10 +6,14 @@ class Person
 		@lamp = Lamp.new
 	end
 
+	def room
+		@room
+	end
+
 	def enter_room
-		puts @name + " goes into the " + @room + "."
-		puts "Its dark. " + @name +" turns the light on."
-		@lamp.light_comes_on 
+			puts @name + " goes into the " + @room + "."
+			puts "Its dark. " + @name +" turns the light on."
+			@lamp.light_comes_on 
 	end
 end
 
@@ -21,13 +25,47 @@ end
 
 class Lamp
  	def initialize()
- 		
+ 		@switch = Switch.new
  	end
 
  	def light_comes_on
-		puts "light_comes_on"
+ 		if @switch.state == :on
+			puts "The light in the " +  @room + " comes_on"
+		elsif @switch.state == :off
+			puts "The Light was already on. You turned it off."
+		else
+			puts "Nothing works"
+		end
  	end
- end
+end
 
- Anja = Person.new("Anja")
- Anja.enter_room
+class Switch
+  def initialize
+    @state = state   #internal(private) variable
+  end
+
+  def state           #expose the variable to external world
+    @state            #attribute reader
+  end
+
+  def flip
+    if @state == :off
+      @state = :on
+    else
+      @state = :off  
+    end
+  end
+end
+
+
+Anja = Person.new("Anja")
+Anja.enter_room
+
+
+
+
+
+Anja = Person.new("Anja")
+Anja.enter_room
+Anja.room
+ 
