@@ -52,7 +52,7 @@ require 'test/unit'
 
 
 class AppTest < Test::Unit::TestCase
-	def is_there_a_string_after_normalising_input
+	def test_is_there_a_string_after_normalising_input
 		normalisedInput = NormalisedInput.new(input)
 		assert normalisedInput.length > 0, 'input should be at least 1 letter'	
 	end
