@@ -2,7 +2,7 @@
 # it strips all characters that are not A-Za-z
 # it downcases each character
 # it assigns a color to each character (in a-z)
-# it converts each instance of any character to 
+# it converts each instance of any character to
 #   a square that has the assigned color
 # it outputs a picture of 50x50 squares max.
 
@@ -17,7 +17,7 @@
 
 # first goal: command line application that takes a string
 # and outputs a list of N color string per line, e.g.
-# 
+#
 # $ ruby text_to_squares.rb
 # please enter your poem: our application is already working!
 # aaaaaa bbbbbb cccccc dddddd
@@ -26,22 +26,28 @@
 # second goal: turn this into an actual web page using those
 # css colors
 
-# the application class
+# the Application class
 #
-# - normalizes the string (strip off invalid characters
-#   and downcase)
-# - creates a picture instance with that string
-# - gets all the squares from the picture and prints out their
-#   colors line by line
+# - knows all the available colors (this is common class knowledge, so it
+#   should be a class method)
+# - normalizes the string (strip off invalid characters and downcase)
+# - has a method `picture` which returns an instance of `Picture` created
+#   with that string
+# - has a method squares which returns the squares from the picture
 #
-# the picture class
-# 
-# - knows all the available colors
-# - takes the string as well as a number of row and columns 
+# the Picture class
+#
+# - takes the string as well as a number of row and columns
 #   as arguments of the initalize method
-# - it generates the squares from the string
-# 
-# the square class
+# - has a method `normalized_string` which returns a version of the string with
+#   everything but A-Za-z stripped off
+# - has a method `characters` which returns all the characters from the
+#   normalized string
+# - has a method `squares` which returns an array of `Square` instances where
+#   each of the squares has one of the characters
 #
-# - has a color
+# the Square class
+#
+# - takes a letter as an argument of the initialize method
+# - has a method `color` which returns the color according to the letter
 # - has a fixed size
