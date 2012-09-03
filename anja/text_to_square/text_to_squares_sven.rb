@@ -18,10 +18,16 @@ class Application
         "y" => "tomate","z" => "tomate"}
   end
 
+  def initialize(answer)
+    @answer = answer
+  end
+
   def picture
+    Picture.new(@answer)
   end
 
   def squares
+
   end
 end
 # the Picture class
@@ -34,7 +40,19 @@ end
 #   normalized string
 # - has a method `squares` which returns an array of `Square` instances where
 #   each of the squares has one of the characters
-class Pictures
+class Picture
+  def initialize(x)
+    @x = x
+  end
+
+  def normalized_string
+    @x.gsub(/[^a-zA-Z]/, '').downcase
+  end
+
+  def characters
+    normalized_string.split(//)
+  end
+
 
 end
 
@@ -44,6 +62,8 @@ end
 # - has a method `color` which returns the color according to the letter
 
 class Square
+  def initialize(x)
+  end
 end
 
 

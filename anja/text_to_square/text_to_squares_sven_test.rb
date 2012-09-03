@@ -6,7 +6,7 @@ require "text_to_squares_sven.rb"
 class ApplicationTest < Test::Unit::TestCase
   def test_colors_returns_a_hash
     color = Application.colors
-    assert color.is_a?(Hash), 'that colors is a hash' #color.class == Hash
+    assert color.instance_of?(Hash), 'that colors should be a hash' #color.class == Hash
   end
 
   def test_colors_returns_a_hash_containing_a_value_for_a
@@ -17,12 +17,15 @@ class ApplicationTest < Test::Unit::TestCase
 
   def test_creation
     app = Application.new('something')
+    assert app.instance_of?(Application), ''
     # assert that application is an instance of Application
   end
 
   def test_picture_returns_a_picture
     app = Application.new('something')
+    assert app.picture.instance_of?(Picture), 'method picture returns instance of Picture'
     # assert that the method picture returns an instance of Picture
+
   end
 
   def test_squares_returns_an_array_of_squares
@@ -33,28 +36,38 @@ class ApplicationTest < Test::Unit::TestCase
 end
 
 class PictureTest < Test::Unit::TestCase
+  def setup
+    @picture = Picture.new('something')
+  end
+
   def test_creation
-    picture = Picture.new('something')
+    # picture = Picture.new('something')
+    assert @picture.instance_of?(Picture)
     # assert that picture is an instance of Picture
   end
 
   def test_normalized_string_strips_special_chars
     picture = Picture.new('something!')
+    assert_equal picture.normalized_string, "something"
+    # assert_no_match /[^a-zA-Z]/, picture.normalized_string
     # assert that picture.normalized_string returns a string with "!" stripped off
   end
 
   def test_normalized_string_downcases
     picture = Picture.new('SOMETHING')
+    assert_equal picture.normalized_string, "something"
     # assert that picture.normalized_string returns a string with "!" stripped off
   end
 
   def test_characters_returns_an_array_of_characters_from_the_normalized_string
-    picture = Picture.new('something')
+    # picture = Picture.new('something')
+    # assert_equal %w(s o m e t h i n g), @picture.characters 
+    assert @picture.characters == Array
     # assert that picture.characters returns an array of all characters contained in "something"
   end
 
   def test_squares_returns_an_array_of_squares_from_the_characters
-    picture = Picture.new('something')
+    # picture = Picture.new('something')
     # assert that picture.squares returns an an array of Square instances where the first one
     # has the letter "s"
     # hint: you will need to implement the Square class first
@@ -64,11 +77,13 @@ end
 class SquareTest < Test::Unit::TestCase
   def test_creation
     square = Square.new('a')
+    assert square.instance_of?(Square)
     # assert that square is an instance of Square
   end
 
   def test_color_returns_the_color_assigned_to_the_character
     square = Square.new('a')
+    assert_equal square.color, "antiquewhite"
     # assert that square.color returns the color which is assigned to "a"
   end
 end
