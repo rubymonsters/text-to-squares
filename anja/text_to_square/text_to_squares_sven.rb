@@ -11,32 +11,11 @@
 class Application
 
   def self.colors
-    {   "a" => "antiquewhite",
-        "b" => "brown",
-        "c" => "chocolate",
-        "d" =>"darkorange",
-        "e" => "eggshell",
-        "f" => "firebrick",
-        "g" => "goldenrod",
-        "h" => "hotpink",
-        "i" => "indian red",
-        "j" => "indian red",
-        "k" => "khaki",
-        "l" => "lightsteelblue",
-        "m" => "moccasin",
-        "n" => "navajowhite",
-        "o" => "olivedrab",
-        "p" => "plum",
-        "q" => "plum",
-        "r" => "rosybrown",
-        "s" => "seashell",
-        "t" => "tomate",
-        "u" => "tomate",
-        "v" => "tomate",
-        "w" => "tomate",
-        "x" => "tomate",
-        "y" => "tomate",
-        "z" => "tomate"}
+    {   "a" => "antiquewhite","b" => "brown","c" => "chocolate","d" =>"darkorange","e" => "eggshell","f" => "firebrick",
+        "g" => "goldenrod","h" => "hotpink","i" => "indian red","j" => "indian red","k" => "khaki","l" => "lightsteelblue",
+        "m" => "moccasin","n" => "navajowhite","o" => "olivedrab","p" => "plum","q" => "plum","r" => "rosybrown",
+        "s" => "seashell","t" => "tomate","u" => "tomate","v" => "tomate","w" => "tomate","x" => "tomate",
+        "y" => "tomate","z" => "tomate"}
   end
 
   def picture

@@ -11,6 +11,7 @@ class ApplicationTest < Test::Unit::TestCase
 
   def test_colors_returns_a_hash_containing_a_value_for_a
     color = Application.colors['a']
+    assert_equal color, "antiquewhite", 'when key = a value = antiquewhite'
     # assert that color is the color which is assigned to "a"
   end
 
