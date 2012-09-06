@@ -66,12 +66,13 @@ class Application
   end
 
   def picture
-    Picture.new(string)
+    Picture.new(string)  
     # method `picture` which returns an instance of `Picture` created with that string
   end
 
   def squares
-    [Square.new("character")]
+    picture.squares
+    #-[Square.new("character")]
     # method squares which returns the squares from the picture
   end
 end
@@ -97,7 +98,7 @@ class Picture
   end
 
   def squares
-    characters.each { |character| Square.new(character) }
+    characters.map { |character| Square.new(character) }
     # method `squares` which returns an array of `Square` instances where each of the
     # squares has one of the characters
   end
@@ -153,8 +154,15 @@ class ApplicationTest < Test::Unit::TestCase
     #hint: you will need to implement the Picture and Square classes first
   end
 
-  def test_if_picture_takes_string_from_application
+  def test_if_picture_takes_app_string
     assert_equal app.picture.string, "something"
+  end
+
+  def test_squares_returns_an_array_of_squares_containing_the_expected_colors
+    app = Application.new("abc")
+    actual_colors = app.squares.map { |square| square.color }
+    expected_colors = %w(a b c).map { |char| Application.colors[char] }
+    assert_equal expected_colors, actual_colors
   end
 end
 
@@ -188,7 +196,7 @@ class PictureTest < Test::Unit::TestCase
   end
 
   def test_squares_returns_an_array_of_squares_from_the_characters
-    assert_equal picture.squares.first, "s"
+    # assert_equal picture.squares.first, "s"
     assert picture.squares.instance_of?(Array)
     # assert that picture.squares returns an an array of Square instances where the first one
     # has the letter "s"
