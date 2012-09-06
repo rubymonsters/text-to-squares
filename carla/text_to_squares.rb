@@ -66,8 +66,12 @@ class Application
 	end
 
 	def picture
-		Picture.new('sample_string')
+		Picture.new(@string)
 	end
+
+  def squares
+    [Square.new("character")]
+  end
 
 end
 
@@ -85,23 +89,31 @@ class Picture
   end
   
   def squares
-    characters.each { |char| Square.new(char) }
+    characters.each { |character| Square.new(character) }
   end
 end
 
 class Square
-  def initialize(char)
-    @char = char
+  def initialize(character)
+    @character = character
   end
   
   def color
-    Application.colors[@char]
+    Application.colors[@character]
   end
+
 end
 
 
 
 class ApplicationTest < Test::Unit::TestCase
+
+  attr_reader :app 
+  
+  def setup
+    @app = Application.new("something")
+  end
+    
   def test_colors_returns_a_hash
     color = Application.colors
     assert color.instance_of?(Hash), 'color should be a hash'
@@ -128,7 +140,7 @@ class ApplicationTest < Test::Unit::TestCase
   end
 
   def test_squares_returns_an_array_of_squares
-    app = Application.new('something')
+    assert app.squares.first.instance_of?(Square)
     # assert that application.squares returns an array where the first object is an instance of Square
     # hint: you will need to implement the Picture and Square classes first
   end
@@ -166,10 +178,7 @@ class PictureTest < Test::Unit::TestCase
   end
 
   def test_squares_returns_an_array_of_squares_from_the_characters
-    picture.squares
-    assert_equal 's', xxx[1]
-
-    
+    assert picture.squares.first, 's'
     # assert that picture.squares returns an an array of Square instances where the first one
     # has the letter "s"
     # hint: you will need to implement the Square class first
@@ -177,13 +186,19 @@ class PictureTest < Test::Unit::TestCase
 end
 
 class SquareTest < Test::Unit::TestCase
+  attr_reader :square
+
+  def setup
+    @square = Square.new('a')
+  end
+
   def test_creation
-    square = Square.new('a')
-    # assert that square is an instance of Square
+    assert square
+    #assert that square is an instance of square
   end
 
   def test_color_returns_the_color_assigned_to_the_character
-    square = Square.new('a')
+    assert_equal square.color, Application.colors['a']
     # assert that square.color returns the color which is assigned to "a"
   end
 end
