@@ -33,6 +33,13 @@ class ApplicationTest < Test::Unit::TestCase
     # assert that application.squares returns an array where the first object is an instance of Square
     # hint: you will need to implement the Picture and Square classes first
   end
+
+   def test_squares_returns_an_array_of_squares_containing_the_expected_colors
+    app = Application.new('abc')
+    actual_colors = app.squares.map { |square| square.color }
+    expected_colors = %w(a b c).map { |char| Application.colors[char] }
+    assert_equal expected_colors, actual_colors
+  end
 end
 
 class PictureTest < Test::Unit::TestCase
