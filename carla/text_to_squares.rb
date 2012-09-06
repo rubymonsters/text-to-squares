@@ -70,7 +70,7 @@ class Application
 	end
 
   def squares
-    [Square.new("character")]
+    [Square.new('character')]
   end
 
 end
@@ -144,7 +144,17 @@ class ApplicationTest < Test::Unit::TestCase
     # assert that application.squares returns an array where the first object is an instance of Square
     # hint: you will need to implement the Picture and Square classes first
   end
+
+   # in the ApplicationTest test case
+  def test_squares_returns_an_array_of_squares_containing_the_expected_colors
+    app = Application.new('abc')
+    actual_colors = app.squares.map { |square| square.color }
+    expected_colors = %w(a b c).map { |char| Application.colors[char] }
+    assert_equal expected_colors, actual_colors
+  end
+
 end
+
 
 class PictureTest < Test::Unit::TestCase
 	attr_reader :picture
@@ -179,6 +189,7 @@ class PictureTest < Test::Unit::TestCase
 
   def test_squares_returns_an_array_of_squares_from_the_characters
     assert picture.squares.first, 's'
+    assert @picture.squares.instance_of?(Array)
     # assert that picture.squares returns an an array of Square instances where the first one
     # has the letter "s"
     # hint: you will need to implement the Square class first
