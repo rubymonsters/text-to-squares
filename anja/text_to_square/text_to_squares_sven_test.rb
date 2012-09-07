@@ -39,7 +39,7 @@ class ApplicationTest < Test::Unit::TestCase
   end
 
   def test_if_picture_instance_has_the_string
-    assert_equal @app.picture.string, 'something' 
+    assert_equal @app.picture.entry, 'something' 
   end
 
   def test_squares_returns_an_array_of_squares_containing_the_expected_colors

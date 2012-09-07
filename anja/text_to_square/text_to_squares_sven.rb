@@ -17,12 +17,12 @@ class Application
         "y" => "tomate","z" => "tomate"}
   end
 
-  def initialize(string)
-    @string = string
+  def initialize(entry)
+    @entry = entry
   end
 
   def picture
-    Picture.new(@string,"rows","columns")
+    Picture.new(@entry,"rows","columns")
   end
 
   def squares
@@ -40,16 +40,16 @@ end
 # - has a method `squares` which returns an array of `Square` instances where
 #   each of the squares has one of the characters
 class Picture
-  attr_reader :string
+  attr_reader :entry
   
-  def initialize(string, rows, columns) 
-    @string = string
+  def initialize(entry, rows, columns) 
+    @entry = entry
     @rows = rows
     @columns = columns
   end
 
   def normalized_string
-    @string.gsub(/[^a-zA-Z]/, '').downcase
+    @entry.gsub(/[^a-zA-Z]/, '').downcase
   end
 
   def characters
