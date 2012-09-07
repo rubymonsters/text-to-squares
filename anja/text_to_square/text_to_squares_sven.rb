@@ -9,7 +9,6 @@
 
 
 class Application
-
   def self.colors
     {   "a" => "antiquewhite","b" => "brown","c" => "chocolate","d" =>"darkorange","e" => "eggshell","f" => "firebrick",
         "g" => "goldenrod","h" => "hotpink","i" => "indian red","j" => "indian red","k" => "khaki","l" => "lightsteelblue",
@@ -18,16 +17,17 @@ class Application
         "y" => "tomate","z" => "tomate"}
   end
 
-  def initialize(answer)
-    @answer = answer
+  def initialize(string)
+    @string = string
   end
 
   def picture
-    Picture.new(@answer)
+    Picture.new(@string,"rows","columns")
   end
 
   def squares
-
+    picture.squares
+    #[Square.new(@string)]
   end
 end
 # the Picture class
@@ -41,22 +41,26 @@ end
 # - has a method `squares` which returns an array of `Square` instances where
 #   each of the squares has one of the characters
 class Picture
-  def initialize(x)
-    @x = x
+  attr_reader :string
+  
+  def initialize(string, rows, columns) 
+    @string = string
+    @rows = rows
+    @columns = columns
   end
 
   def normalized_string
-    @x.gsub(/[^a-zA-Z]/, '').downcase
+    @string.gsub(/[^a-zA-Z]/, '').downcase
   end
 
   def characters
     normalized_string.split(//)
   end
 
-  def square
-    characters.each {|char| Square.new(char)}
+  def squares
+    characters.map { |char| Square.new(char) }
   end
-  
+
 end
 
 # the Square class
@@ -65,12 +69,15 @@ end
 # - has a method `color` which returns the color according to the letter
 
 class Square
-  def initialize(x)
+  def initialize(char)
+    @char = char
   end
 
   def color
+    Application.colors[@char]
   end
 end
+
 
 
 
