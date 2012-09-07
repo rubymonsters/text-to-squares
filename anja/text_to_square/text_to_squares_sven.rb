@@ -53,7 +53,10 @@ class Picture
     normalized_string.split(//)
   end
 
-
+  def square
+    characters.each {|char| Square.new(char)}
+  end
+  
 end
 
 # the Square class
@@ -63,6 +66,9 @@ end
 
 class Square
   def initialize(x)
+  end
+
+  def color
   end
 end
 
