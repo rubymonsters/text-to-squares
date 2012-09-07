@@ -85,7 +85,7 @@ class PictureTest < Test::Unit::TestCase
   def test_squares_returns_an_array_of_squares_from_the_characters
     # p @picture.squares
     # p @picture.squares.first
-    #assert_equal @picture.squares.first, "s"
+    assert_equal @picture.squares.first.char, "s"
     assert @picture.squares.instance_of?(Array), 'instance of array'
     assert @picture.squares.first.instance_of?(Square),'first one is instance of class square'
     # assert that picture.squares returns an an array of Square instances where the first one
