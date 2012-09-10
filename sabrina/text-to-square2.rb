@@ -27,14 +27,38 @@
 # css colors
 
 require "test/unit"
+require "mathn"
 
 # The Application class ...
 class Application
   # ... knows all the available colors (this is common class knowledge, so it should be a class method) 
   def self.colors
-    { 'a' => 112233,
-      'b' => 223344,
-      'c' => 334455 }
+    { 'a' => '112233',
+      'b' => '223344',
+      'c' => '334455',
+      'd' => '445566',
+      'e' => '556677',
+      'f' => '667788',
+      'g' => '778899',
+      'h' => '8899AA',
+      'i' => '99AABB',
+      'j' => 'AABBCC',
+      'k' => 'BBCCDD',
+      'l' => 'CCDDEE',
+      'm' => 'DDEEFF',
+      'n' => 'EEFF11',
+      'o' => 'FF1122',
+      'p' => '123456',
+      'q' => '234567',
+      'r' => '345678',
+      's' => '456789',
+      't' => '56789A',
+      'u' => '6789AB',
+      'v' => '789ABC',
+      'w' => '89ABCD',
+      'x' => '9ABCDE',
+      'y' => 'ABCDEF',
+      'z' => 'BCDEF1' }
   end
   
   def initialize(string)
@@ -77,6 +101,12 @@ class Picture
   def squares
     characters.map { |char| Square.new(char) }
   end
+  
+  # ... has a method `size` which returns the number of rows and columns of the picture
+  #     as the square root of the total number of characters with any decimal digits cut off
+  def size
+    Math.sqrt(@string.size).to_i
+  end
 end
 
 # The Square class ...
@@ -106,7 +136,7 @@ class ApplicationTest < Test::Unit::TestCase
 
   def test_colors_returns_a_hash_containing_a_value_for_a
     color = Application.colors['a']
-    assert color == 112233, 'color should be the color which is assigned to "a"'
+    assert color == '112233', 'color should be the color which is assigned to "a"'
   end
   
   def test_creation
@@ -158,6 +188,11 @@ class PictureTest < Test::Unit::TestCase
     picture = Picture.new('something')
     assert picture.squares.instance_of?(Array) && picture.squares.first.char == "s", 'the method picture.squares should return an array of Square instances, where the first one has the letter "s"'
   end
+  
+  def test_size_returns_the_root_of_the_number_of_characters
+    picture = Picture.new('something')
+    assert picture.size == 3, 'the method size should return the root of the numbers of characters'
+  end
 end
 
 class SquareTest < Test::Unit::TestCase
@@ -168,6 +203,6 @@ class SquareTest < Test::Unit::TestCase
 
   def test_color_returns_the_color_assigned_to_the_character
     square = Square.new('a')
-    assert square.color == 112233, 'should return the color which is assigned to "a"'
+    assert square.color == '112233', 'should return the color which is assigned to "a"'
   end
 end
