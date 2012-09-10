@@ -120,7 +120,7 @@ class ApplicationTest < Test::Unit::TestCase
   def test_squares_returns_an_array_of_squares
     assert @app.squares.first.instance_of?(Square), 'squares should return an array with instances of Squares'
   end
-  
+    
   def test_if_picture_instance_has_the_string
     assert_equal @app.picture.string, 'something', 'the picture instance should have the given string'
   end
