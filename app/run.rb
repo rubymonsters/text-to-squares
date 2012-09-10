@@ -1,26 +1,17 @@
 $: << 'lib'
 
+require 'erb'
 require 'application'
 require 'picture'
 require 'square'
 
-app = Application.new('hello study group!')
+print 'please input a string: '
+string = gets
 
-html = '
-  <html>
-    <body>
-      <ol>
-'
-
-html = html + app.squares.map do |square|
-  "<li style='background-color:##{square.color}'></li>"
-end.join("\n")
-
-html = html + '
-      </ol>
-    </body>
-  </html>
-'
+app = Application.new(string)
+template = File.read('lib/template.html.erb')
+erb = ERB.new(template)
+html = erb.result(binding)
 
 File.open('index.html', 'w') { |file| file.puts(html) }
 
