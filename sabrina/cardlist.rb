@@ -57,9 +57,9 @@ end
 # object-initialization
 first = Card.new("Platon", "Politeia", false)
 second = Card.new("Heidegger", "Sein und Zeit", false)
-third = Card.new("rot", "gruen", true)
-fourth = Card.new("blau", "orange", true)
-fifth = Card.new("gelb", "violett", false)
+third = Card.new("complementary colour of red", "green", true)
+fourth = Card.new("complementary colour of blue", "orange", true)
+fifth = Card.new("complementary colour of yellow", "violet", false)
 
 # array of all objects
 cards = [first, second, third, fourth, fifth]
