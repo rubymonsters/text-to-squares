@@ -70,12 +70,12 @@ method on arrays
 									.detect or 
 									.find		(returns the first on, for which block not false)(	
 									.collect or
-									.map        (returns new array with results of running block for every element)
+									.map        (returns new array with results of code passed into the block)
 									.reject		(returns the element for which the block is not true)(array)
 
 									.first 		(returns the first element)
 									.last
-									.each	 	(invokes the code block for each element)
+									.each	 	(performes operation defined by the code block for each element, doesnt chance the array)
 									.pop 		(remove the last element and returns it)
 									.shift 		(remove the first element and returns it)
 									.push or << (appends the object to the array)

@@ -7,6 +7,7 @@ class WordToColor
 
   def color_of_word
     @word.gsub(/\b(a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z)\b/i) do |l|   
+    #gsub == looks for every match and replaces it 
     #\b == matches a word boundary?  /i == case insesitive
     case l.downcase
       when "a"

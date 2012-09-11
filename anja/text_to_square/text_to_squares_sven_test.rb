@@ -8,6 +8,9 @@ class ApplicationTest < Test::Unit::TestCase
     @app = Application.new('something')
   end
 
+  def test_render
+  end
+
   def test_colors_returns_a_hash
     color = Application.colors
     assert color.instance_of?(Hash), 'that colors should be a Hash' #color.class == Hash
@@ -15,8 +18,12 @@ class ApplicationTest < Test::Unit::TestCase
 
   def test_colors_returns_a_hash_containing_a_value_for_a
     color = Application.colors['a']
-    assert_equal color, "antiquewhite", 'when key = a value = antiquewhite'
+    assert_equal color, "antiquewhite", 'when key = a value should be antiquewhite'
     # assert that color is the color which is assigned to "a"
+  end
+#NEU
+  def test_Application_argument_is_string
+    assert @app.entry.instance_of?(String), 'argument should be a string'
   end
 
   def test_creation
@@ -27,11 +34,9 @@ class ApplicationTest < Test::Unit::TestCase
   def test_picture_returns_a_picture
     assert @app.picture.instance_of?(Picture), 'method picture returns instance of Picture'
     # assert that the method picture returns an instance of Picture
-
   end
 
   def test_squares_returns_an_array_of_squares
-    
     assert @app.squares.instance_of?(Array), 'is Array'
     assert @app.squares.first.instance_of?(Square), 'first one is instance of Squares'
     # assert that application.squares returns an array where the first object is an instance of Square
@@ -39,7 +44,7 @@ class ApplicationTest < Test::Unit::TestCase
   end
 
   def test_if_picture_instance_has_the_string
-    assert_equal @app.picture.string, 'something' 
+    assert_equal @app.picture.entry, 'something' 
   end
 
   def test_squares_returns_an_array_of_squares_containing_the_expected_colors
@@ -57,7 +62,6 @@ class PictureTest < Test::Unit::TestCase
   end
   
   def test_creation
-    # picture = Picture.new('something')
     assert @picture.instance_of?(Picture)
     # assert that picture is an instance of Picture
   end
@@ -76,16 +80,13 @@ class PictureTest < Test::Unit::TestCase
   end
 
   def test_characters_returns_an_array_of_characters_from_the_normalized_string
-    # picture = Picture.new('something')
     # assert_equal %w(s o m e t h i n g), @picture.characters 
     assert @picture.characters.instance_of?(Array)
     # assert that picture.characters returns an array of all characters contained in "something"
   end
 
   def test_squares_returns_an_array_of_squares_from_the_characters
-    # p @picture.squares
-    # p @picture.squares.first
-    #assert_equal @picture.squares.first, "s"
+    assert_equal @picture.squares.first.char, "s"
     assert @picture.squares.instance_of?(Array), 'instance of array'
     assert @picture.squares.first.instance_of?(Square),'first one is instance of class square'
     # assert that picture.squares returns an an array of Square instances where the first one

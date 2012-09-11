@@ -9,8 +9,6 @@
 
 
 class Application
-  attr_reader :entry
-  
   def self.colors
     {   "a" => "antiquewhite","b" => "brown","c" => "chocolate","d" =>"darkorange","e" => "eggshell","f" => "firebrick",
         "g" => "goldenrod","h" => "hotpink","i" => "indian red","j" => "indian red","k" => "khaki","l" => "lightsteelblue",
@@ -81,3 +79,7 @@ class Square
     Application.colors[@char]
   end
 end
+
+test = Application.new(ARGV.to_s)
+
+puts test.squares.map { |letter| letter.color }
