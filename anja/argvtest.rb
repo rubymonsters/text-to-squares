@@ -1,1 +1,1 @@
-p ARGV
+puts ARGV

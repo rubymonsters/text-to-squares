@@ -8,6 +8,9 @@ class ApplicationTest < Test::Unit::TestCase
     @app = Application.new('something')
   end
 
+  def test_render
+  end
+
   def test_colors_returns_a_hash
     color = Application.colors
     assert color.instance_of?(Hash), 'that colors should be a Hash' #color.class == Hash
