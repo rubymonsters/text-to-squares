@@ -1,4 +1,4 @@
-$: << 'lib'
+$: << '../lib'
 
 require "test/unit"
 require 'application'

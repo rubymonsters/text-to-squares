@@ -1,10 +1,8 @@
 class Picture
   attr_reader :entry
   
-  def initialize(entry, rows, columns) 
+  def initialize(entry) 
     @entry = entry
-    @rows = rows
-    @columns = columns
   end
 
   def normalized_string
@@ -22,5 +20,17 @@ class Picture
   #     as the square root of the total number of characters with any decimal digits cut off
   def size
     Math.sqrt(@entry.length).to_i #Math is built-in method for mathematics, to_i whole number
+  end
+
+  # def test_rows_returns_an_array_of_arrays_of_squares
+    # ... so that we can render each row and for each row
+    # render an li tag that has the color
+  #end
+  def rows  #the row size of the big picturesquare with the small squares 
+    arr = []
+    size.times do 
+      arr = arr << squares.shift(size)
+    end
+  arr
   end
 end

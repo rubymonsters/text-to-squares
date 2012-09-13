@@ -16,14 +16,14 @@ class Application
   end
 
   def picture
-    Picture.new(@entry,"rows","columns")
+    Picture.new(@entry)
   end
 
   def squares
     picture.squares
   end
+ 
 
-  def rows
-    sqaures.size
+  def render
   end
 end

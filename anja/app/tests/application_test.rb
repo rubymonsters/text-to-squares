@@ -6,7 +6,9 @@ class ApplicationTest < Test::Unit::TestCase
     @app = Application.new('something')
   end
 
-  def test_render
+  def test_render_returns_the_rendered_html_output
+    # make it so that the method render does all the stuff
+    # that now run.rb does with the ERB.new thing etc.
   end
 
   def test_colors_returns_a_hash
@@ -16,7 +18,7 @@ class ApplicationTest < Test::Unit::TestCase
 
   def test_colors_returns_a_hash_containing_a_value_for_a
     color = Application.colors['a']
-    assert_equal color, "antiquewhite", 'when key = a value should be antiquewhite'
+    assert_equal color, "112233", 'when key = a value should be antiquewhite'
     # assert that color is the color which is assigned to "a"
   end
 #NEU
@@ -51,5 +53,5 @@ class ApplicationTest < Test::Unit::TestCase
     expected_colors = %w(a b c).map { |char| Application.colors[char] }
     assert_equal expected_colors, actual_colors
   end
-
+    
 end
