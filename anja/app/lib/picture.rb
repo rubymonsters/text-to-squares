@@ -27,10 +27,11 @@ class Picture
     # render an li tag that has the color
   #end
   def rows  #the row size of the big picturesquare with the small squares 
-    arr = []
-    size.times do 
-      arr = arr << squares.shift(size)
-    end
-  arr
+    squares.each_slice(size).to_a
+  #   arr = []
+  #   size.times do 
+  #     arr = arr << squares.shift(size)
+  #   end
+  # arr
   end
 end

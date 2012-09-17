@@ -32,6 +32,7 @@ class PictureTest < Test::Unit::TestCase
   end
 
   def test_rows_returns_an_array_of_arrays_of_squares
+    
     # ... so that we can render each row and for each row
     # render an li tag that has the color
   end

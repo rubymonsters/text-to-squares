@@ -56,9 +56,12 @@ class PictureTest < Test::Unit::TestCase
   end
 
   def test_rows_returns_an_array_where_the_first_row_contains_picture_size_squares
-    assert @picture.rows.first[2], 'the first array in the array contains three numbers'
     assert_equal @picture.rows.first.length, 3, 'the first array in the array contains three numbers'
     # i.e. given that picture.size is 3 the first row should have 3 squares
+  end
+
+  def test_rows_returns_an_array_where_the_first_row_is_an_instance_of_square
+    assert @picture.rows.first.first.instance_of?(Square), 'the first object in the first array in the array should be an instance of square'
   end
 
 end
