@@ -23,6 +23,9 @@ class Application
     picture.squares
   end
  
+  def rows
+    picture.rows
+  end
 
   def render
   end

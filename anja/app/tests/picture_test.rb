@@ -56,6 +56,7 @@ class PictureTest < Test::Unit::TestCase
   end
 
   def test_rows_returns_an_array_where_the_first_row_contains_picture_size_squares
+    p @picture.rows
     assert_equal @picture.rows.first.length, 3, 'the first array in the array contains three numbers'
     # i.e. given that picture.size is 3 the first row should have 3 squares
   end
