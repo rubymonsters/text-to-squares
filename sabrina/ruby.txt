@@ -1,5 +1,16 @@
 most important concepts and terms
 
+HTTP
+HyperText Transfer Protocol
+GET
+HTTP-request-method: Requests a representation of the specified resource.
+POST
+HTTP-request-method: Submits data to be processed to the identified resource.
+URL
+Uniform Resource Locator is a type of URI (Uniform Resource Identifier) but often used as a synonym
+
+***
+
 GETS
 The method 'gets' (contrary to 'puts') waits for an input.
 For example:

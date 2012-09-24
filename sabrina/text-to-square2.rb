@@ -190,7 +190,7 @@ class PictureTest < Test::Unit::TestCase
   end
   
   def test_size_returns_the_root_of_the_number_of_characters
-    picture = Picture.new('something')
+    picture = Picture.new('somethingmore')
     assert picture.size == 3, 'the method size should return the root of the numbers of characters'
   end
 end

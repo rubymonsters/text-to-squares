@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <style>
+      ol {
+	      clear: both;
+        list-style-type: none;
+      }
+      .square {
+        display: block;
+		    float: left;
+        width: 50px;
+        height: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <ol>
+      <% rows.each do |row| %>
+    		<li>
+    		  <ol>
+            <% row.each do |square| %>
+              <li class="square" style='background-color:#<%= square.color %>'></li>
+    		  	<% end %>
+    		  </ol>
+    		</li> 
+      <% end %>
+    </ol>
+  </body>
+</html>
