@@ -8,6 +8,7 @@
       display: inline-block;
       width: 50px;
       height: 50px;
+      border-radius: 25px;
       }
 
     </style>
@@ -18,5 +19,18 @@
         <li style='background-color:#<%= square.color %>'></li>
       <% end %>
     </ol>
+
+    <hr>
+
+    <ol>
+      <% app.rows.each do |row|%>
+        <ol>
+        <% row.each do |square| %>
+          <li style='background-color:#<%= square.color %>'></li>
+        <% end %>
+        </ol>
+      <% end %>
+    </ol>
+
   </body>
 </html>
