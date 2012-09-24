@@ -1,4 +1,4 @@
-require 'mathn'
+
 
 class Picture
   attr_reader :string
