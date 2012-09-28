@@ -5,17 +5,13 @@ require 'application'
 require 'picture'
 require 'square'
 
+
 get '/' do
-  "
-  <h1>Text to squares</h1>
-  <p>Please input a string:</p>
-  <form method='post'>
-    <textarea name='input'></textarea>
-    <input type='submit'>
-  </form>
-  "
+  erb :get_form
+  # I put the submit form snippet also in an extra template in 'views'
 end
 
 post '/' do
-  app = Application.new(params[:input]).render
+  application = Application.new(params[:input])
+  erb :template, :locals => { :rows => application.rows }
 end
