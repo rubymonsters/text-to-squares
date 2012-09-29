@@ -1,39 +1,15 @@
 <html>
   <head>
-    <title>
-      Text to Squares
-    </title>  
-    <style>
-      ol {
-        clear: both;
-        list-style-type: none;
-        padding: 0;
-      }
-      .square {
-        display: block;
-        float: left;
-        width: 50px;
-        height: 50px;
-        border-radius: 10px;
-      }
-      body {
-            background-color:#ececec;
-            font-family:'Droid Sans', arial, sans-serif;
-            color: #777;
-            }
-      #page {
-            max-width: 600px;
-            margin: 12px auto;
-            padding:0 30px 30px;
-            z-index: 0;
-    </style>
+    <title>Text to Squares</title>  
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
   </head>
   <body>
     <div id="page">
-      <ol>
+      <!-- die klasse ist <%= rows.class %> --> 
+      <ol class="box" style="width:<%= rows[0].length*50 %>px" >
         <% rows.each do |row| %>
           <li>
-            <ol>
+            <ol class="row">
               <% row.each do |square| %>
                 <li class="square" style='background-color:#<%= square.color %>'></li>
               <% end %>
@@ -41,6 +17,9 @@
           </li> 
         <% end %>
       </ol>
+      <div class="back_link"> 
+        <a href="/">&larr; back to the form</a>
+      </div>
     </div>
   </body>
 </html>
