@@ -6,16 +6,18 @@ require 'picture'
 require 'square'
 
 get '/' do
-  "
-  <h1>Text to squares</h1>
-  <p>Please input a string:</p>
-  <form method='post'>
-    <textarea name='input'></textarea>
-    <input type='submit'>
-  </form>
-  "
+  erb :form
 end
 
-post '/' do
-  app = Application.new(params[:input]).render
+# post '/' do
+#   app = Application.new(params[:input]).render
+# end
+
+# get '/' do
+#   erb :index
+# end
+
+post '/' do 
+  app = Application.new(params[:input])
+  erb :template, :locals => { :rows => app.rows }
 end

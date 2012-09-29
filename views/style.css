@@ -1,0 +1,12 @@
+body {
+  background-color:#ececec;
+  font-family:'Droid Sans', arial, sans-serif;
+  color: #777;
+}
+#page {
+  max-width: 600px;
+  margin: 12px auto;
+  padding:0 30px 30px;
+  background-color:#fff;
+  z-index: 0;
+}
