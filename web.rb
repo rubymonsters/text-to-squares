@@ -21,3 +21,14 @@ post '/' do
   app = Application.new(params[:input])
   erb :template, :locals => { :rows => app.rows }
 end
+
+get '/:input' do
+  @app = Application.new(params[:input])
+  erb :template, :locals => { :rows => app.rows }
+end
+
+
+# post '/' do 
+#   @app = Application.new(params[:input])
+#   erb :template
+# end
