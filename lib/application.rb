@@ -1,4 +1,5 @@
-require 'erb'
+# require 'erb'
+
 
 class Application
   def self.colors
@@ -46,9 +47,9 @@ class Application
     picture.rows
   end
   
-  def render
-    template = File.read('lib/template.html.erb')
-    erb = ERB.new(template)
-    erb.result(binding)
-  end
+  # def render
+  #   template = File.read('lib/template.html.erb')
+  #   erb = ERB.new(template)
+  #   erb.result(binding)
+  # end
 end
