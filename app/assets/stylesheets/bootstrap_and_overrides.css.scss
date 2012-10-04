@@ -3,21 +3,8 @@
 /* own css */
 
 body {
-  background-color: #ececec !important;
+  background-color: #ececec ;
   padding: 30px 100px;
-}
-
-.container
-{
-  max-width: 300px;
-  background-color: #fff;
-  margin: 12px auto;
-  padding:10px 30px 30px;
-}
-
-h1 {
-  font-size: 16px !important;
-  
 }
 
 ol {
@@ -34,5 +21,5 @@ ol {
       }
 
 #notice {
-  color: #333 !important;
+  color: red;
 }
