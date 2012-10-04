@@ -1,23 +1,24 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Your Text:</b>
+  <b>YOUR TEXT:</b>
   <%= @text.input %>
 </p>
-<ol>
-  <% @text.rows.each do |row| %>
-    <li>
-      <ol>
-        <% row.each do |square| %>
-          <li class="square" style='background-color:#<%= square.color %>'></li>
-        <% end %>
-      </ol>
-    </li> 
-  <% end %>
-</ol>
+  <ol>
+    <% @text.rows.each do |row| %>
+      <li>
+        <ol>
+          <% row.each do |square| %>
+            <li class="square" style='background-color:#<%= square.color %>'></li>
+          <% end %>
+        </ol>
+      </li> 
+    <% end %>
+  </ol>
 
 <br>
 <br>
 <br>
 <%= link_to 'Edit', edit_text_path(@text) %> |
-<%= link_to 'Listing texts', texts_path %>
+<%= link_to 'Listing Texts', texts_path %> |
+<%= link_to 'New Text', new_text_path %>
