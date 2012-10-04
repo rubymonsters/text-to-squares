@@ -44,7 +44,7 @@ class TextsController < ApplicationController
 
     respond_to do |format|
       if @text.save
-        format.html { redirect_to @text, notice: 'Square was successfully created.' }
+        format.html { redirect_to @text, notice: 'Yeah, Square was successfully created.' }
         format.json { render json: @text, status: :created, location: @text }
       else
         format.html { render action: "new" }
