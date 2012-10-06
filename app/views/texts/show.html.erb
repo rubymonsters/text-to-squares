@@ -1,10 +1,13 @@
-<p id="notice"><%= notice %></p>
-
+<% if notice %>
+  <p id="notice" class="alert">
+    <%= notice %>
+  </p>
+<% end %>
 <p>
   <b>YOUR TEXT:</b>
   <%= @text.input %>
 </p>
-  <ol>
+  <ol style="width:<%= @text.rows.first.length * 50 +26%>px; margin: 0 auto;">
     <% @text.rows.each do |row| %>
       <li>
         <ol>

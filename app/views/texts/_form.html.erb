@@ -1,8 +1,7 @@
 <%= form_for(@text) do |f| %>
   <% if @text.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@text.errors.count, "error") %> prohibited this text from being saved:</h2>
-
+    <div id="error_explanation" class="alert alert-error">
+      <h2>There was an error.</h2>
       <ul>
       <% @text.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
