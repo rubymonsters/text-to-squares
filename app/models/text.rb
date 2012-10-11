@@ -1,8 +1,9 @@
 class Text < ActiveRecord::Base
   attr_accessible :input
 
-  validates :input, :presence => { :message => "Please enter some Text."}, 
-                    :length   => { :maximum => 323, :message => "The Text was longer than 323 characters. Please enter a shorter one."}
+  validate  :input_should_not_be_empty
+            :input_should_not_longer_than_323_characters 
+  
 
   def self.colors
     { 'a' => '112233','b' => '223344','c' => '334455','d' => '445566','e' => '556677',
@@ -17,6 +18,19 @@ class Text < ActiveRecord::Base
     Picture.new(input)
   end
   
+ def input_should_not_be_empty
+    if picture.normalized_string.blank?
+      errors.add(:input, "You should write something!")
+    end
+  end
+
+  # def input_should_not_longer_than_323_characters
+  #   if picture.normalized_string.length > 232
+  #     errors.add(:input, "Don't write more than 323 letters!")
+  #   end
+  # end
+
+
   def squares
     picture.squares
   end
