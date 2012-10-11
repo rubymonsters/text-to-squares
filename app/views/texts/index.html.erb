@@ -1,16 +1,17 @@
 <h1>Listing texts</h1>
 
 <table class="table table-hover">
-  <tr>
-    <th>INPUT</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+  <thead>
+    <tr>
+      <th>INPUT</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
 <% @texts.each do |text| %>
   <tr>
-    <td><%= text.input %></td>
+    <td style="max-width:300px"><%= text.input %></td>
     <td><i class="icon-stop"></i>&nbsp;<%= link_to 'Show', text %></td>
     <td><i class="icon-wrench"></i>&nbsp;<%= link_to 'Edit', edit_text_path(text) %></td>
     <td><i class="icon-trash"></i>&nbsp;<%= link_to 'Destroy', text, confirm: 'Are you sure?', method: :delete %></td>
