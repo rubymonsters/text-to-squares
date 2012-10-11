@@ -1,0 +1,27 @@
+<% if notice %>
+  <p id="notice" class="alert">
+<%= notice %>
+  </p>
+<% end %>
+<p>
+  <b>YOUR TEXT:</b>
+  <%= @text.input %>
+</p>
+  <ol style="width:<%= @text.rows.first.length * 50 +26%>px; margin: 0 auto;">
+    <% @text.rows.each do |row| %>
+      <li>
+        <ol>
+          <% row.each do |square| %>
+            <li class="square" style='background-color:#<%= square.color %>'></li>
+          <% end %>
+        </ol>
+      </li> 
+    <% end %>
+  </ol>
+
+<br>
+<br>
+<br>
+<%= link_to 'Edit', edit_text_path(@text) %> |
+<%= link_to 'Listing Texts', texts_path %> |
+<%= link_to 'New Text', new_text_path %>
