@@ -3,8 +3,8 @@
     <div id="error_explanation" class="alert alert-error">
       <h2>There was an error.</h2>
       <ul>
-      <% @text.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+      <% @text.errors.messages.each do |key,messages| %>
+        <li><%= messages.join(" ") %></li>
       <% end %>
       </ul>
     </div>

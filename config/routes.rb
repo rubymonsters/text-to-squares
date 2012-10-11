@@ -1,7 +1,9 @@
 TextToSquares::Application.routes.draw do
-  get "home/index"
+  get "home/index"   #dont really needed.anja
 
-  resources :texts
+  resources :texts   #define the routes.anja
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -52,7 +54,10 @@ TextToSquares::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'home#index'
+
+
+  root :to => 'home#index'   #home controller index action.anja
+
 
   # See how all your routes lay out with "rake routes"
 
@@ -60,3 +65,6 @@ TextToSquares::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 end
+
+
+#rezeptionist and has all the routes,instanciate controller and call the method on it

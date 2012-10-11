@@ -1,8 +1,8 @@
 class Text < ActiveRecord::Base
   attr_accessible :input
 
-  validates :input, :presence => { :message => "was blank. Please enter some Text."}, 
-                    :length   => { :maximum => 323, :message => "was longer than 323 characters. Please enter a shorter one."}
+  validates :input, :presence => { :message => "Please enter some Text."}, 
+                    :length   => { :maximum => 323, :message => "The Text was longer than 323 characters. Please enter a shorter one."}
 
   def self.colors
     { 'a' => '112233','b' => '223344','c' => '334455','d' => '445566','e' => '556677',
