@@ -1,8 +1,7 @@
-class Text < ActiveRecord::Base
+class Text < ActiveRecord::Base #framework aus verschiedenen klassen/module
   attr_accessible :input
 
   validate  :input_should_not_be_empty
-            :input_should_not_longer_than_323_characters 
   
 
   def self.colors
@@ -18,18 +17,11 @@ class Text < ActiveRecord::Base
     Picture.new(input)
   end
   
- def input_should_not_be_empty
+  def input_should_not_be_empty
     if picture.normalized_string.blank?
       errors.add(:input, "You should write something!")
     end
   end
-
-  # def input_should_not_longer_than_323_characters
-  #   if picture.normalized_string.length > 232
-  #     errors.add(:input, "Don't write more than 323 letters!")
-  #   end
-  # end
-
 
   def squares
     picture.squares

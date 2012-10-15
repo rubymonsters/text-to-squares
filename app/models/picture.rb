@@ -1,5 +1,3 @@
-
-
 class Picture
   attr_reader :string
   
@@ -11,7 +9,7 @@ class Picture
     @string.gsub(/[^a-zA-Z]/, "").downcase
   end
 
-   def truncated_string
+  def truncated_string
     normalized_string.slice(0, size*size)
   end
   
