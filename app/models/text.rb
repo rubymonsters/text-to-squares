@@ -1,7 +1,9 @@
 class Text < ActiveRecord::Base #framework aus verschiedenen klassen/module
-  attr_accessible :input
+  attr_accessible :input, :user_id
 
   validate  :input_should_not_be_empty
+
+  belongs_to :user
   
 
   def self.colors
