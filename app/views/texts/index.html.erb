@@ -14,7 +14,7 @@
 <% @texts.each do |text| %>
   <tr>
     <td><%= text.user.name %></td>
-    <td style="width:300px;word-wrap: break-word;"><%= text.input %></td>
+    <td style="width:400px;display:block;"><%= text.input %></td>
     <td><i class="icon-stop"></i>&nbsp;<%= link_to 'Show', text %></td>
     <td><i class="icon-wrench"></i>&nbsp;<%= link_to 'Edit', edit_text_path(text) %></td>
     <td><i class="icon-trash"></i>&nbsp;<%= link_to 'Destroy', text, confirm: 'Are you sure?', method: :delete %></td>

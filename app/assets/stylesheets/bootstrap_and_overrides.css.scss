@@ -21,7 +21,13 @@ ul {
 
 th {
    color:#08c;
-   word-wrap: break-word;
+   
+}
+
+table td {
+  width:200px;
+  word-wrap: break-word;
+  white-space:normal;
 }
 
 .square {
