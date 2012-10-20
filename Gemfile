@@ -1,11 +1,23 @@
 source 'https://rubygems.org'
 
+gem 'omniauth-twitter'
+
+# for twitter authorisation
+
 gem 'rails', '3.2.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg'
+# use sqlite3 database in development mode
+group :development do
+  gem 'sqlite3'
+end
+
+# use postgres database in production mode
+group :production do
+  gem 'pg'
+end
 
 
 # Gems used only for assets and not required
