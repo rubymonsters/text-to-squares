@@ -3,6 +3,8 @@ TextToSquares::Application.routes.draw do
 
   resources :texts   #define the routes.anja
 
+ #calback url from twitter
+  match '/auth/:provider/callback' => 'users#twitter_login'
 
 
   # The priority is based upon order of creation:
