@@ -1,8 +1,10 @@
-class Text < ActiveRecord::Base
-  attr_accessible :input
+class Text < ActiveRecord::Base #framework aus verschiedenen klassen/module
+  attr_accessible :input, :user_id
 
-  validates :input, :presence => { :message => "Please enter some Text."}, 
-                    :length   => { :maximum => 323, :message => "The Text was longer than 323 characters. Please enter a shorter one."}
+  validate  :input_should_not_be_empty
+
+  belongs_to :user
+  
 
   def self.colors
     { 'a' => '112233','b' => '223344','c' => '334455','d' => '445566','e' => '556677',
@@ -17,6 +19,12 @@ class Text < ActiveRecord::Base
     Picture.new(input)
   end
   
+  def input_should_not_be_empty
+    if picture.normalized_string.blank?
+      errors.add(:input, "You should write something!")
+    end
+  end
+
   def squares
     picture.squares
   end

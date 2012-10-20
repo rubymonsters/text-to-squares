@@ -13,6 +13,23 @@ ol {
   padding: 0;
   }
 
+ul {
+  clear: both;
+  list-style-type: none;
+  padding: 0;
+  }
+
+th {
+   color:#08c;
+   
+}
+
+table td {
+  width:200px;
+  word-wrap: break-word;
+  white-space:normal;
+}
+
 .square {
         display: block;
         float: left;

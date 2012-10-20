@@ -10,6 +10,12 @@
     </div>
   <% end %>
 
+
+  <div class="field">
+    <% f.label :user_id %><br />
+    <%= f.collection_select :user_id, User.all, :id, :name %>
+  </div>
+
   <div class="field">
     <%# f.label :input %><br />
     <%= f.text_area :input,  :placeholder => "Type your text in here"  %>
@@ -20,7 +26,3 @@
 <% end %>
 
 
-<%# if @text.nil? %>
-<!--       <h2>You didn't write anything. Try it again!</h2>
- -->
-  <%# end %>
