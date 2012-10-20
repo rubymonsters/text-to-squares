@@ -1,6 +1,10 @@
 TextToSquares::Application.routes.draw do
   get "home/index"   #dont really needed.anja
 
+  
+  match '/auth/:provider/callback' => 'users#twitter_login'
+  #calback url from twitter
+
   resources :texts   #define the routes.anja
 
 
