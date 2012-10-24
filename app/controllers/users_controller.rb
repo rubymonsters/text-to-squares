@@ -16,4 +16,3 @@ def twitter_login
 end
 
 end
-
