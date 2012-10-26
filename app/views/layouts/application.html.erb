@@ -11,5 +11,7 @@
     <h4 style="text-align:right"> You are logged in as <%= current_user.name.capitalize if current_user != nil %>.</h4>
     <%= yield %>
   </div>
+<hr>
+  <%= params.inspect %>
 </body>
 </html>
