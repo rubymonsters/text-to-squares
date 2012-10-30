@@ -1,5 +1,5 @@
 <h1>Listing texts</h1>
-
+<%= paginate @texts %>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -29,6 +29,7 @@
 </table>
 
 <br />
+
 
 <%= link_to 'New Text', new_text_path %>
 
