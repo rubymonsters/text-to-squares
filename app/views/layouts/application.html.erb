@@ -8,10 +8,14 @@
 </head>
 <body>
   <div class="container">
-    <h4 style="text-align:right"> You are logged in as <%= current_user.name.capitalize if current_user != nil %>.</h4>
+    <h4 style="text-align:right"> You are logged in as <%= current_user.name.capitalize if current_user %>. <a href='/logout' style="color:#fff;text-decoration:none">Logout</a></h4>
     <%= yield %>
   </div>
 <hr>
+<% if current_user 
+  if current_user.name == "tyranja" %>
   <%= params.inspect %>
+  <% end %>
+<% end %>
 </body>
 </html>

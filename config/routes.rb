@@ -1,7 +1,8 @@
 TextToSquares::Application.routes.draw do
   get "home/index"   #dont really needed.anja
 
-  
+  get "/logout", :to => 'users#twitter_logout'
+
   match '/auth/:provider/callback' => 'users#twitter_login'
   #callback url from twitter
 
@@ -9,9 +10,6 @@ TextToSquares::Application.routes.draw do
   #url for where we can see the info sent from twitter when a user logs in
 
   resources :texts   #define the routes.anja
-
- #calback url from twitter
-  match '/auth/:provider/callback' => 'users#twitter_login'
 
 
   # The priority is based upon order of creation:

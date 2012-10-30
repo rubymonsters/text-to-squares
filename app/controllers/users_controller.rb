@@ -15,4 +15,10 @@ def twitter_login
   redirect_to new_text_url
 end
 
+
+def twitter_logout
+  session[:user_id] = nil
+  render :text => "You've logged out!"
+end
+
 end
