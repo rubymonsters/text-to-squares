@@ -10,8 +10,8 @@
   <div class="container">
     <div id="user_nav">
       <% if current_user %>
-        Welcome <%= current_user.name %>
-        <%= link_to "Logout", logout_path %>"
+        Welcome <%= current_user.name %>! ||
+        <%= link_to "Logout", logout_path %>
       <% else %>
         <%= link_to "Login with Twitter", "/auth/twitter" %>
       <% end %>

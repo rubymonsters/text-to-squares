@@ -13,7 +13,12 @@
   </thead>
 <% @texts.each do |text| %>
   <tr>
-    <td><%= text.user.name if text.user %></td>
+    <td><% if text.user %>
+          <%= text.user.name %>
+        <% else %>
+          <%= "Anonymous" %>
+        <% end %>
+    </td>
     <td style="width:400px;display:block;"><%= text.input %></td>
     <td><i class="icon-stop"></i>&nbsp;<%= link_to 'Show', text %></td>
     <td><i class="icon-wrench"></i>&nbsp;<%= link_to 'Edit', edit_text_path(text) %></td>
