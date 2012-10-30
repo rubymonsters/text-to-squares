@@ -1,8 +1,9 @@
 class UsersController < ApplicationController 
 
 def twitter_login
+  #raise omniauth = request.env['omniauth.auth']  
   omniauth = request.env['omniauth.auth']  
-  # This contains all the details of the user say Email, Name, Age so that you can store it in your application db.
+  # This Hash contains all the details of the user say Email, Name, Age so that you can store it in your application db.
   twitter_id =  omniauth["uid"] 
   user = User.find_by_twitter_id(twitter_id)
   if user == nil
@@ -18,7 +19,7 @@ end
 
 def twitter_logout
   session[:user_id] = nil
-  render :text => "You've logged out!"
+  redirect_to root_url, :notice => "You are logged out now!"
 end
 
 end

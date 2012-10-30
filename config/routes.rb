@@ -1,10 +1,13 @@
 TextToSquares::Application.routes.draw do
   get "home/index"   #dont really needed.anja
 
-  get "/logout", :to => 'users#twitter_logout'
+  #get "/logout", :to => 'users#twitter_logout'
 
   match '/auth/:provider/callback' => 'users#twitter_login'
   #callback url from twitter
+
+  match "/logout" => "users#twitter_logout"
+
 
   get "/twitter_info" => 'sessions#create'
   #url for where we can see the info sent from twitter when a user logs in
