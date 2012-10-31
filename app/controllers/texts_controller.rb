@@ -41,6 +41,7 @@ class TextsController < ApplicationController
   # POST /texts.json
   def create
     @text = Text.new(params[:text])
+    @text.user = current_user
 
     respond_to do |format|
       if @text.save
