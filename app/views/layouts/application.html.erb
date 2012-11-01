@@ -21,10 +21,8 @@
   </div>
 
 <hr>
-<% if current_user 
-  if current_user.name == "tyranja" %>
-  <%= params.inspect %>
-  <% end %>
-<% end %>
+<%= params.inspect if current_user && current_user.name == "tyranja" %>
+
+
 </body>
 </html>
