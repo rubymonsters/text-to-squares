@@ -11,5 +11,6 @@
   <div class="container">
     <%= yield %>
   </div>
+  <%= params.inspect if Rails.env.development? %>
 </body>
 </html>
