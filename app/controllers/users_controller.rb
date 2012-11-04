@@ -22,4 +22,9 @@ def twitter_logout
   redirect_to root_url, :notice => "You are logged out now!"
 end
 
+def show
+  @user = User.find(params[:id]) 
+end
+
+
 end

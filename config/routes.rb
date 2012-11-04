@@ -9,11 +9,13 @@ TextToSquares::Application.routes.draw do
   match "/logout" => "users#twitter_logout"
 
 
+
   get "/twitter_info" => 'sessions#create'
   #url for where we can see the info sent from twitter when a user logs in
 
   resources :texts   #define the routes.anja
 
+  resources :users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

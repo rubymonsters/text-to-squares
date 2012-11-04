@@ -2,7 +2,7 @@ class TextsController < ApplicationController
   # GET /texts
   # GET /texts.json
   def index
-    @texts = Text.order("created_at DESC").page(params[:page]).per(5)
+    @texts = Text.order("created_at DESC").page(params[:page]).per(10)
 
     respond_to do |format|
       format.html # index.html.erb
