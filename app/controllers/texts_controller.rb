@@ -2,7 +2,7 @@ class TextsController < ApplicationController
   # GET /texts
   # GET /texts.json
   def index
-    @texts = Text.all(:order => "created_at DESC")
+    @texts = Text.order("created_at DESC").page(params[:page]).per(10)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,6 +41,7 @@ class TextsController < ApplicationController
   # POST /texts.json
   def create
     @text = Text.new(params[:text])
+    @text.user = current_user
 
     respond_to do |format|
       if @text.save
