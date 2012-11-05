@@ -16,13 +16,10 @@
         <%= link_to "Login with Twitter", "/auth/twitter" %>
       <% end %>
   </div>
-   
+
     <%= yield %>
   </div>
-
-<hr>
-<%= params.inspect if current_user && current_user.name == "tyranja" %>
-
-
+  <hr>
+  <%= params.inspect if Rails.env.development? || current_user.try(:name) == "tyranja" %>
 </body>
 </html>

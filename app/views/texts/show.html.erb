@@ -1,3 +1,10 @@
+<% if @text.user %>
+  <p>
+    <img src="<%= @text.user.twitter_avatar %>" alt="twitter avatar">
+  </p>
+<% end %>
+<br>
+<p>
   <b>YOUR TEXT:</b>
   <%= @text.input %>
 </p>
@@ -9,7 +16,7 @@
             <li class="square" style='background-color:#<%= square.color %>'></li>
           <% end %>
         </ol>
-      </li> 
+      </li>
     <% end %>
   </ol>
 
