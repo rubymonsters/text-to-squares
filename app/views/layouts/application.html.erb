@@ -12,6 +12,6 @@
     <%= yield %>
   </div>
 <hr>
-  <%= params.inspect %>
+  <%= params.inspect if Rails.env.development? %>
 </body>
 </html>
