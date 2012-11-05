@@ -8,7 +8,15 @@
 </head>
 <body>
   <div class="container">
-    <h4 style="text-align:right"> You are logged in as <%= current_user.name.capitalize if current_user != nil %>.</h4>
+    <div id="user_nav">
+      <% if current_user %>
+        Welcome <%= current_user.name %>! ||
+        <%= link_to "Logout", logout_path %>
+      <% else %>
+        <%= link_to "Login with Twitter", "/auth/twitter" %>
+      <% end %>
+  </div>
+
     <%= yield %>
   </div>
 <hr>

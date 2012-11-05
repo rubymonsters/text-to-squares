@@ -1,9 +1,7 @@
-<h1>Listing texts</h1>
-<%= paginate @texts %>
+<h1>All the Texts from <%= @user.name %>.</h1>
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>USER</th>
       <th>INPUT</th>
       <th></th>
       <th></th>
@@ -11,13 +9,8 @@
       <th></th>
     </tr>
   </thead>
-<% @texts.each do |text| %>
+<% @user.texts.each do |text| %>
   <tr>
-    <% if text.user.present? %>
-      <td><%= link_to text.user.name, user_path(text.user.id) %></td>
-    <% else %>
-      <td><%= link_to "Anonymous", text %></td>
-    <% end %>
     <td style="width:400px;display:block;"><%= text.input %></td>
     <td><i class="icon-stop"></i>&nbsp;<%= link_to 'Show', text %></td>
     <td><i class="icon-wrench"></i>&nbsp;<%= link_to 'Edit', edit_text_path(text) %></td>
@@ -30,5 +23,5 @@
 <br />
 
 
+<%= link_to 'Back to Listing Texts', texts_path %> |
 <%= link_to 'New Text', new_text_path %>
-
