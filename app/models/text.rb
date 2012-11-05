@@ -1,5 +1,5 @@
 class Text < ActiveRecord::Base #framework aus verschiedenen klassen/module
-  attr_accessible :input, :user_id
+  attr_accessible :input, :user_id, :publish_text
 
   validate  :input_should_not_be_empty
 
