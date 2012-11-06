@@ -4,10 +4,7 @@
   </p>
 <% end %>
 <br>
-<p>
-  <b>YOUR TEXT:</b>
-  <%= @text.input %>
-</p>
+
   <ol style="width:<%= @text.rows.first.length * 50 +26%>px; margin: 0 auto;">
     <% @text.rows.each do |row| %>
       <li>
@@ -19,6 +16,21 @@
       </li>
     <% end %>
   </ol>
+
+<br>
+<br>
+
+<% if @text.publish_text? %>
+  <p>
+  <b>YOUR TEXT:</b>
+  <%= @text.input %>
+</p>
+<% end %>
+
+<%= form_for(@text) do |f| %>
+<%= f.hidden_field :publish_text, :value => !@text.publish_text %>
+<%= f.submit @text.publish_text ? 'Hide' : 'Show' %>
+<% end %>
 
 <br>
 <br>
