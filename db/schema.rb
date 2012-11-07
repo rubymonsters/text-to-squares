@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20121105202739) do
     t.datetime "updated_at",     :null => false
     t.integer  "twitter_id"
     t.string   "twitter_avatar"
+    t.string   "screen_name"
   end
 
 end
