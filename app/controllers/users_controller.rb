@@ -6,13 +6,15 @@ def twitter_login
   # This Hash contains all the details of the user say Email, Name, Age so that you can store it in your application db.
   twitter_id =  omniauth["uid"] 
   profile_image_url = omniauth["info"]["image"]
+  screen_name = omniauth["info"]["nickname"]
   user = User.find_by_twitter_id(twitter_id)
   if user == nil
   	user = User.create!(
   		:name => omniauth["info"]["name"], 
   		:email => omniauth["info"]["email"],
   		:twitter_id => twitter_id,
-      :twitter_avatar => profile_image_url)
+      :twitter_avatar => profile_image_url,
+      :screen_name => screen_name)
   end
   session[:user_id] = user.id
   redirect_to new_text_url
