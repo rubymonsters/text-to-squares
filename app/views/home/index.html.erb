@@ -5,8 +5,10 @@
   <br />
   <p>This is the project of weeks<br> of hard work by seven woman and<br> two patient coaches.</p>
   <p>
-    <%= link_to "Let's Start", new_text_path, class:"btn btn-primary btn-large" %>
+    <%= link_to "Let's Start", new_text_path, class:"btn btn-primary btn-large", :title => 'Your user name would be "Anonymous', :rel => 'tooltip' %>
   </p>
  
  </div>
-<%= link_to 'Listing Texts', texts_path %>
+<%= link_to 'Listing Texts', texts_path, class:"label-with-popover", :title => 'See all the Texts that are already written.', :rel => 'tooltip' %>
+
+  
