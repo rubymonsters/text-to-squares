@@ -12,12 +12,16 @@
       <% if current_user %>
         Welcome <%= current_user.name %>! ||
         <%= link_to "Logout", logout_path %>
-      <% end %>
+      <% else %>
+        <p>
+        <a href='/auth/twitter'> <img src="/sign-in-with-twitter-gray.png" alt="twitter button" > </a>
+        </p>
+       <% end %>
   </div>
 
     <%= yield %>
   </div>
-  <hr>
-  <%= params.inspect if Rails.env.development? || current_user.try(:name) == "tyranja" %>
+<hr>
+  <%= params.inspect if Rails.env.development? %>
 </body>
 </html>
