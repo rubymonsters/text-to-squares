@@ -2,39 +2,41 @@
   <p>
     <img src="<%= @text.user.twitter_avatar %>" alt="twitter avatar">
   </p>
+  <% else %>
+    <h2><%= "This is square was made by Anonymous." %></h2>
 <% end %>
 <br>
-
-  <ol style="width:<%= @text.rows.first.length * 50 +26%>px; margin: 0 auto;">
-    <% @text.rows.each do |row| %>
-      <li>
-        <ol>
-          <% row.each do |square| %>
-            <li class="square" style='background-color:#<%= square.color %>'></li>
-          <% end %>
-        </ol>
-      </li>
+<div class="row">
+  <div class="span12">
+    <ol style="width:<%= @text.rows.first.length * 50 +26%>px; margin: 0 auto;">
+      <% @text.rows.each do |row| %>
+        <li>
+          <ol>
+            <% row.each do |square| %>
+              <li class="square" style='background-color:#<%= square.color %>'></li>
+            <% end %>
+          </ol>
+        </li>
+      <% end %>
+    </ol>
+  </div>
+</div>
+<div class="row">
+  <div class="span12" style="padding-top:20px;">
+    <% if @text.publish_text? %>
+      <p>
+      <b>YOUR TEXT:</b>
+      <%= @text.input %>
+      </p>
     <% end %>
-  </ol>
 
-<br>
-<br>
-
-<% if @text.publish_text? %>
-  <p>
-  <b>YOUR TEXT:</b>
-  <%= @text.input %>
-</p>
-<% end %>
-
-<%= form_for(@text) do |f| %>
-<%= f.hidden_field :publish_text, :value => !@text.publish_text %>
-<%= f.submit @text.publish_text ? 'Hide' : 'Show' %>
-<% end %>
-
-<br>
-<br>
-<br>
+    <%= form_for(@text) do |f| %>
+    <%= f.hidden_field :publish_text, :value => !@text.publish_text %>
+    <%= f.submit @text.publish_text ? 'Hide your Text' : 'Show your Text' %>
+    <% end %>
+  </div>  
+</div>
 <%= link_to 'Edit', edit_text_path(@text) %> |
 <%= link_to 'Listing Texts', texts_path %> |
 <%= link_to 'New Text', new_text_path %>
+</div>
