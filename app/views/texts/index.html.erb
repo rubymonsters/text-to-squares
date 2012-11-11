@@ -18,7 +18,16 @@
     <% else %>
       <td><%= link_to "Anonymous", text %></td>
     <% end %>
-    <td style="width:400px;display:block;"><%= text.input %></td>
+    <td style="width:400px;display:block;">
+      <% if text.publish_text %>
+        <%= text.input %>
+      <% else %>  
+        <%= form_for(text) do |f| %>
+          <%= f.hidden_field :publish_text, :value => !text.publish_text %>
+          <%= f.submit text.publish_text ? 'Hide your Text' : 'Show your Text' %>
+          <% end %>
+      <% end %>  
+    </td>
     <td><i class="icon-stop"></i>&nbsp;<%= link_to 'Show', text %></td>
     <td><i class="icon-wrench"></i>&nbsp;<%= link_to 'Edit', edit_text_path(text) %></td>
     <td><i class="icon-trash"></i>&nbsp;<%= link_to 'Destroy', text, confirm: 'Are you sure?', method: :delete %></td>
