@@ -4,6 +4,10 @@ class User < ActiveRecord::Base
   has_many :texts
 
   def is_admin?
-    false
+    if name == "tyranja"
+      return true
+    else 
+      return false
+    end
   end
 end
