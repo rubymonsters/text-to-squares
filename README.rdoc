@@ -11,3 +11,34 @@ To work on this application locally, you should first make sure you can run it a
 4. Run: `bundle exec rake db:schema:load`
 5. Run: `bundle exec rails server`
 6. In your browser, open http://localhost:3000/, and everything should work. If not, feel free to file an issue! https://github.com/svenfuchs/text-to-squares/issues
+
+
+
+Instruction how to add new feature by creating branches
+
+
+    Be on your master and create a new branch (that will kind of create a copy of your master):
+    $ git branch <branch_name>
+
+    Now switch to that new created branch:
+    $ git checkout <branch_name>
+
+    Push the branch to github
+    $ git push origin <branch_name>
+
+    Do your changes and commit them 
+
+    Push to your branch:
+    $ git push origin <branch_name>
+
+    If you want to delete a branch locally, switch to your master and do:
+    $ git branch -d <branch_name> or $ git branch -D <branch_name> (in case it hasn´t been fully merged)
+
+    if you want it to be removed from github (after it has been merged into the master or
+    because you don´t need it anymore) be on your master and do:
+    $ git push origin :<branch_name>
+
+    Want to see all your branches?
+    $ git branch
+
+Note: It´s good to commit or stash changes first before switching back to another branch.
