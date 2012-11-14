@@ -16,7 +16,7 @@
     <% if text.user.present? %>
       <td><%= link_to text.user.screen_name, user_path(text.user.id) %></td>
     <% else %>
-      <td><%= link_to "Anonymous", text %></td>
+      <td>Anonymous</td>
     <% end %>
     <td style="width:400px;display:block;">
       <% if text.publish_text %>
