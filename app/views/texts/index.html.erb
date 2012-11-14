@@ -14,7 +14,7 @@
 <% @texts.each do |text| %>
   <tr>
     <% if text.user.present? %>
-      <td><%= link_to text.user.name, user_path(text.user.id) %></td>
+      <td><%= link_to text.user.screen_name, user_path(text.user.id) %></td>
     <% else %>
       <td><%= link_to "Anonymous", text %></td>
     <% end %>
