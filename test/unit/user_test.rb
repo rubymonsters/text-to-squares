@@ -11,4 +11,7 @@ class UserTest < ActiveSupport::TestCase
 
     assert user.is_admin? == true, "Tyranja should be our admin!"
   end
+
+  
 end
+
