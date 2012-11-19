@@ -6,4 +6,9 @@ class HomeControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "correct spelling on home page" do
+    get :index
+    assert_select "p", /women/
+  end
+
 end
