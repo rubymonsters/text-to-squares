@@ -8,9 +8,9 @@ class User < ActiveRecord::Base
   end
 
   def as_json(options = nil)
-  	hash = super(options)
-  	hash["is_admin"] = is_admin?
-  	hash
+    hash = super(options)
+    hash["is_admin"] = is_admin?
+    hash
   end
 
 end

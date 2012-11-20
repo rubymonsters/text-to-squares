@@ -13,7 +13,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "user can be turned into a hash for json" do
-  	user = User.new(:name =>"tyranja")
+    user = User.new(:name =>"tyranja")
     hash = user.as_json
     assert_equal "tyranja", hash['name']
   end
