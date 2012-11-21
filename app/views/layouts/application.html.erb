@@ -8,13 +8,7 @@
 </head>
 <body>
   <div class="container">
-    <% flash.each do |name, msg | %>
-      <div class="alert alert-<%= name == :notice ? "success" : "error"%>" >
-        <a href="#" class="close" data-dismiss="alert">×</a>
-<!--         <button type="button" class="close" data-dismiss="alert">×</button>
- -->        <%= msg %>
-      </div>
-    <% end %>
+
     <div id="user_nav">
       <% if current_user %>
         Welcome <%= current_user.screen_name %>! ||
@@ -28,7 +22,7 @@
 
     <%= yield %>
   </div>
-<hr>
+
   <%= params.inspect if Rails.env.development? %>
 </body>
 </html>
