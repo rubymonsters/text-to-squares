@@ -6,4 +6,11 @@ class User < ActiveRecord::Base
   def is_admin?
     name == "tyranja"
   end
+
+  def as_json(options = nil)
+    hash = super(options)
+    hash["is_admin"] = is_admin?
+    hash
+  end
+
 end
