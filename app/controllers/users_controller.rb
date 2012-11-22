@@ -23,9 +23,6 @@ def twitter_login
   session[:user_id] = user.id
   redirect_to new_text_url
 end
-
-
-
   
 def twitter_logout
   session[:user_id] = nil

@@ -6,6 +6,7 @@
     <h2><%= "This square was made by Anonymous." %></h2>
 <% end %>
 <br>
+<% @color_red = true %>
 <div class="row">
   <div class="span12">
     <ol style="width:<%= @text.rows.first.length * 50 +26%>px; margin: 0 auto;">
@@ -13,7 +14,11 @@
         <li>
           <ol>
             <% row.each do |square| %>
-              <li class="square" style='background-color:#<%= square.color %>'></li>
+              <% if @color_red == true %>
+                <li class="square" style='background-color:#<%= square.color_red %>'></li>
+              <% else %>
+                <li class="square" style='background-color:#<%= square.color %>'></li> 
+              <% end %>
             <% end %>
           </ol>
         </li>
@@ -21,6 +26,11 @@
     </ol>
   </div>
 </div>
+<%= form_for(@text) do |f| %>
+    <% @color_red = !@color_red %>
+    <%= f.submit @color_red ? 'Red' : 'Blue' %>
+    <%= @color_red %>
+<% end %>
 <div class="row">
   <div class="span12" style="padding-top:20px;">
     <% if @text.publish_text? %>

@@ -27,19 +27,24 @@ class TextsControllerTest < ActionController::TestCase
 
   test "index view displays a link with the screen name when the text has a user" do
     @text.user = User.new(:screen_name => "Maren") 
+    @text.save!
     get :index
-    assert_select "table" do
-      assert_select "tr:nth-child(2)" do
-      assert_select "td:nth-child(1)", "Anonymous"
+    # puts response.body
+    # puts Text.all.map{|text| [text.input, text.user.try(:screen_name), text.created_at]}
+    # puts User.all.map{|user| user.name}
+    assert_select "tbody" do
+      assert_select "tr:nth-child(3)" do
+      assert_select "td:nth-child(1)", "Maren"
       end
     end
   end
 
-  test "index view" do
-    @text.user = User.new(:screen_name => "Maren") 
-    get :index
-    puts response.body
-  end
+  # test "index view" do
+  #   @text.user = User.new(:screen_name => "Maren") 
+  #   @text.save!
+  #   get :index
+  #   puts response.body
+  # end
 
   test "should get new" do
     get :new
