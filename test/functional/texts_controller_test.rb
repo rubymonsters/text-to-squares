@@ -18,22 +18,27 @@ class TextsControllerTest < ActionController::TestCase
 
   test "index view displays 5 rows" do
     get :index
-    @text.user = User.new 
-      assert_select "table" do
-        assert_select "tr:nth-child(2)" do
-          assert_select "td", :count => 6
+    assert_select "table" do
+      assert_select "tr:nth-child(2)" do
+      assert_select "td", :count => 6
       end
     end
   end
 
   test "index view displays a link with the screen name when the text has a user" do
-    get :index
     @text.user = User.new(:screen_name => "Maren") 
-      assert_select "table" do
-        assert_select "tr:nth-child(2)" do
-          assert_select "td:nth-child(1)", "Anonymous"
+    get :index
+    assert_select "table" do
+      assert_select "tr:nth-child(2)" do
+      assert_select "td:nth-child(1)", "Anonymous"
       end
     end
+  end
+
+  test "index view" do
+    @text.user = User.new(:screen_name => "Maren") 
+    get :index
+    puts response.body
   end
 
   test "should get new" do
