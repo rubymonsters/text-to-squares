@@ -39,13 +39,6 @@ class TextsControllerTest < ActionController::TestCase
     end
   end
 
-  # test "index view" do
-  #   @text.user = User.new(:screen_name => "Maren") 
-  #   @text.save!
-  #   get :index
-  #   puts response.body
-  # end
-
   test "should get new" do
     get :new
     assert_response :success
@@ -62,6 +55,20 @@ class TextsControllerTest < ActionController::TestCase
   test "should show text" do
     get :show, id: @text
     assert_response :success
+  end
+
+  #show request,without params for the text variable
+  test "@square_color not defined if display_color is not defined" do
+    get :show, id: @text
+    #puts response.body
+    assert_equal @square_color, nil
+  end
+
+  #show request,with params for the text variable 
+  test "should change @square_color to red after using the link_to 'Red Squares'" do
+    get :show, id: @text, display_color: "red"
+    #puts response.body
+    assert_equal assigns[:square_color], "red"
   end
 
   test "should get edit" do

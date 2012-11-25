@@ -14,6 +14,10 @@ class TextsController < ApplicationController
   # GET /texts/1.json
   def show
     @text = Text.find(params[:id])
+
+    @square_color = params[:display_color] #TODO:color_schema var name ändern
+    #takes the params from the link
+    #the value from the key:display_color is the string "red" 
     
     respond_to do |format|
       format.html # show.html.erb

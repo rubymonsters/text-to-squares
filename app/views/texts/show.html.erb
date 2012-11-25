@@ -6,15 +6,24 @@
     <h2><%= "This square was made by Anonymous." %></h2>
 <% end %>
 <br>
-<% @color_red = true %>
 <div class="row">
   <div class="span12">
+    <% if @square_color == "red" %>
+      <%= link_to "Blue Squares", text_path(@text.id), :class => "btn btn-info" %> 
+    <% else %>
+      <%= link_to "Red Squares", text_path(@text.id,{:display_color => "red"}), :class => "btn btn-danger" %> 
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span12" style="padding-top:20px;">
     <ol style="width:<%= @text.rows.first.length * 50 +26%>px; margin: 0 auto;">
       <% @text.rows.each do |row| %>
         <li>
           <ol>
             <% row.each do |square| %>
-              <% if @color_red == true %>
+              <% if @square_color == "red" %>
                 <li class="square" style='background-color:#<%= square.color_red %>'></li>
               <% else %>
                 <li class="square" style='background-color:#<%= square.color %>'></li> 
@@ -26,11 +35,7 @@
     </ol>
   </div>
 </div>
-<%= form_for(@text) do |f| %>
-    <% @color_red = !@color_red %>
-    <%= f.submit @color_red ? 'Red' : 'Blue' %>
-    <%= @color_red %>
-<% end %>
+
 <div class="row">
   <div class="span12" style="padding-top:20px;">
     <% if @text.publish_text? %>
