@@ -10,4 +10,9 @@ class SquareTest < Test::Unit::TestCase
     square = Square.new('a')
     assert square.color == '112233', 'should return the color which is assigned to "a"'
   end
+
+  def test_color_red_returns_the_color_assigned_to_the_character
+    square = Square.new('a')
+    assert square.color_red == '320603', 'should return the color which is assigned to "a"'
+  end
 end

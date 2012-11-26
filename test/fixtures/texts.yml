@@ -1,7 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  input: MyText
+  input: Text_one
 
 two:
-  input: MyText
+  input: Text_two
+
+three:
+  input: Text_three

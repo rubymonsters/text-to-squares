@@ -11,6 +11,34 @@ class TextsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:texts)
   end
 
+  test "should have class table" do
+    get :index   
+    assert_select '.table' #css selector
+  end
+
+  test "index view displays 5 rows" do
+    get :index
+    assert_select "table" do
+      assert_select "tr:nth-child(2)" do
+      assert_select "td", :count => 6
+      end
+    end
+  end
+
+  test "index view displays a link with the screen name when the text has a user" do
+    @text.user = User.new(:screen_name => "Maren") 
+    @text.save!
+    get :index
+    # puts response.body
+    # puts Text.all.map{|text| [text.input, text.user.try(:screen_name), text.created_at]}
+    # puts User.all.map{|user| user.name}
+    assert_select "tbody" do
+      assert_select "tr:nth-child(3)" do
+      assert_select "td:nth-child(1)", "Maren"
+      end
+    end
+  end
+
   test "should get new" do
     get :new
     assert_response :success
@@ -27,6 +55,20 @@ class TextsControllerTest < ActionController::TestCase
   test "should show text" do
     get :show, id: @text
     assert_response :success
+  end
+
+  #show request,without params for the text variable
+  test "@square_color not defined if display_color is not defined" do
+    get :show, id: @text
+    #puts response.body
+    assert_equal @square_color, nil
+  end
+
+  #show request,with params for the text variable 
+  test "should change @square_color to red after using the link_to 'Red Squares'" do
+    get :show, id: @text, display_color: "red"
+    #puts response.body
+    assert_equal assigns[:square_color], "red"
   end
 
   test "should get edit" do

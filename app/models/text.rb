@@ -15,6 +15,15 @@ class Text < ActiveRecord::Base #framework aus verschiedenen klassen/module
       'z' => 'BCDEF1' }
   end
 
+  def self.colors_red
+    { 'a' => '320603','b' => '520905','c' => '520905','d' => '620b06','e' => '720d07',
+      'f' => '820f08','g' => 'FFAE00','h' => '921109','i' => 'a2130a','j' => 'FFC340',
+      'k' => 'b2150b','l' => 'c2160c','m' => 'd2180d','n' => 'e21a0e','o' => 'f01d11',
+      'p' => 'f23c31','q' => 'f34b41','r' => 'FFCD00','s' => 'f45a51','t' => 'FFAE00',
+      'u' => '720d07','v' => '520905','w' => '520905','x' => '520905','y' => '620b06',
+      'z' => '320603' }
+  end
+
   def picture
     Picture.new(input)
   end
