@@ -20,19 +20,22 @@
       <td>Anonymous</td>
     <% end %>
     <td style="width:400px;display:block;">
-      <% if text.publish_text %>
         <%= text.input %>
-      <% else %>  
-        <%= form_for(text) do |f| %>
-          <%= f.hidden_field :publish_text, :value => !text.publish_text %>
-          <%= f.submit text.publish_text ? 'Hide your Text' : 'Show your Text' %>
-          <% end %>
+    <td>
+      <i class="icon-stop"></i>&nbsp; <%= link_to 'Show', text %>
+    </td>
+    <td>
+      <% if text.user_id == current_user.id %> 
+        <i class="icon-wrench"></i>&nbsp;<%= link_to 'Edit', edit_text_path(text) %>
       <% end %>  
     </td>
-    <td><i class="icon-stop"></i>&nbsp;<%= link_to 'Show', text %></td>
-    <td><i class="icon-wrench"></i>&nbsp;<%= link_to 'Edit', edit_text_path(text) %></td>
-    <td><i class="icon-trash"></i>&nbsp;<%= link_to 'Destroy', text, confirm: 'Are you sure?', method: :delete %></td>
-    <td><%= text.created_at.strftime("%d %b. %Y") %></td>
+    <td>
+      <% if text.user_id == current_user.id %> 
+        <i class="icon-trash"></i>&nbsp;<%= link_to 'Destroy', text, confirm: 'Are you sure?', method: :delete %>
+      <% end %>  
+    </td>
+    <td><%= text.created_at.strftime("%d %b. %Y") %>
+    </td>
   </tr>
   <% end %>
   </tbody>
