@@ -44,6 +44,11 @@ class TextsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should have link listening text" do
+    get :new
+    assert_select "a[href=?]", "/texts"  
+  end
+
   test "should create text" do
     assert_difference('Text.count') do
       post :create, text: { input: @text.input }
@@ -56,7 +61,7 @@ class TextsControllerTest < ActionController::TestCase
     get :show, id: @text
     assert_response :success
   end
-
+  
   #show request,without params for the text variable
   test "@square_color not defined if display_color is not defined" do
     get :show, id: @text

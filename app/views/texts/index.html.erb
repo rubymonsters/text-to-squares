@@ -12,32 +12,35 @@
     </tr>
   </thead>
   <tbody>
-<% @texts.each do |text| %>
-  <tr>
-    <% if text.user.present? %>
-      <td><%= link_to text.user.screen_name, user_path(text.user.id) %></td>
-    <% else %>
-      <td>Anonymous</td>
+    <% @texts.each do |text| %>
+      <tr>
+        <% if text.user.present? %>
+          <td><%= link_to text.user.screen_name, user_path(text.user.id) %>
+          </td>
+        <% else %>
+          <td><%= link_to "Anonymous", text %>
+          </td>
+        <% end %>
+        <td style="width:400px;display:block;">
+          <%= text.input %>
+        </td>
+        <td>
+          <i class="icon-stop"></i>&nbsp;<%= link_to 'Show', text %>
+        </td>
+        <td>
+          <% if (current_user && text.user && current_user.id == text.user.id) %>
+              <i class="icon-wrench"></i>&nbsp;<%= link_to 'Edit', edit_text_path(text) %>
+          <% end %>
+        </td>
+        <td>
+          <% if (current_user && text.user && current_user.id == text.user.id) %>
+            <i class="icon-trash"></i>&nbsp;<%= link_to 'Destroy', text, confirm: 'Are you sure?', method: :delete %>
+          <% end %>
+        </td>
+        <td><%= text.created_at.strftime("%d %b. %Y") %>
+        </td>
+      </tr>
     <% end %>
-    <td style="width:400px;display:block;">
-        <%= text.input %>
-    <td>
-      <i class="icon-stop"></i>&nbsp; <%= link_to 'Show', text %>
-    </td>
-    <td>
-      <% if text.user_id == current_user.id %> 
-        <i class="icon-wrench"></i>&nbsp;<%= link_to 'Edit', edit_text_path(text) %>
-      <% end %>  
-    </td>
-    <td>
-      <% if text.user_id == current_user.id %> 
-        <i class="icon-trash"></i>&nbsp;<%= link_to 'Destroy', text, confirm: 'Are you sure?', method: :delete %>
-      <% end %>  
-    </td>
-    <td><%= text.created_at.strftime("%d %b. %Y") %>
-    </td>
-  </tr>
-  <% end %>
   </tbody>
 </table>
 
@@ -45,4 +48,3 @@
 
 
 <%= link_to 'New Text', new_text_path %>
-
