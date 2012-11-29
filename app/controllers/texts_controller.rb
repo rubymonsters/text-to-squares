@@ -3,6 +3,7 @@ class TextsController < ApplicationController
   # GET /texts.json
   def index
     @texts = Text.order("created_at DESC").page(params[:page]).per(10)
+  
 
     respond_to do |format|
       format.html # index.html.erb
@@ -85,4 +86,6 @@ class TextsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
 end
+
