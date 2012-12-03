@@ -28,7 +28,7 @@
           <i class="icon-stop"></i>&nbsp;<%= link_to 'Show', text %>
         </td>
         <td style="color:#777">
-          <% if helper_current_user_equals_text_user?(current_user,text) %>
+          <% if user_can_edit?(current_user, text) %>
             <i class="icon-wrench"></i>&nbsp;<%= link_to 'Edit', edit_text_path(text) %>
           <% else %>
             <i class="icon-wrench"></i>&nbsp;Edit

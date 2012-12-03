@@ -76,11 +76,6 @@ class TextsControllerTest < ActionController::TestCase
     assert_equal assigns[:square_color], "red"
   end
 
-  test "should get edit" do
-    get :edit, id: @text
-    assert_response :success
-  end
-
   test "should update text" do
     put :update, id: @text, text: { input: @text.input }
     assert_redirected_to text_path(assigns(:text))
@@ -92,5 +87,26 @@ class TextsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to texts_path
+  end
+
+  test "text can be edited by its owner" do
+    user = User.create!(:name => "Testimus Maximus")
+    @text.user = user
+    @text.save!
+
+    session[:user_id] = user.id
+
+    get :edit, :id => @text.id
+
+    assert_response :success
+  end
+
+  test "it is forbidden to edit someone else's text" do
+    user = User.create!(:name => "Testimus Maximus")
+    @text.user = user
+    @text.save!
+    get :edit, :id => @text.id
+
+    assert_response 403
   end
 end
