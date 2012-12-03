@@ -15,8 +15,9 @@ class TextsController < ApplicationController
   # GET /texts/1.json
   def show
     @text = Text.find(params[:id])
+    # @text.color_scheme = params[:color_scheme]
 
-    @square_color = params[:display_color] #TODO:color_schema var name ändern
+    # @square_color = params[:display_color] #TODO:color_schema var name ändern
     #takes the params from the link
     #the value from the key:display_color is the string "red" 
     
@@ -63,7 +64,6 @@ class TextsController < ApplicationController
   # PUT /texts/1.json
   def update
     @text = Text.find(params[:id])
-
     respond_to do |format|
       if @text.update_attributes(params[:text])
         format.html { redirect_to @text, notice: 'Square was successfully updated.' }

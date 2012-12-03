@@ -11,14 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121105202739) do
+ActiveRecord::Schema.define(:version => 20121201203802) do
 
   create_table "texts", :force => true do |t|
     t.text     "input"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.integer  "user_id"
     t.boolean  "publish_text", :default => true
+    t.string   "color_scheme", :default => "blue"
   end
 
   create_table "users", :force => true do |t|

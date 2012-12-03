@@ -13,4 +13,8 @@ class Square
     Text.colors_red[@char]
   end
 
+   def color_green
+    Text.colors_green[@char]
+  end
+
 end

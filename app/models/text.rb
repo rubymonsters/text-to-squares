@@ -1,5 +1,5 @@
 class Text < ActiveRecord::Base #framework aus verschiedenen klassen/module
-  attr_accessible :input, :user_id, :publish_text
+  attr_accessible :input, :user_id, :publish_text, :color_scheme
 
   validate  :input_should_not_be_empty
 
@@ -22,6 +22,16 @@ class Text < ActiveRecord::Base #framework aus verschiedenen klassen/module
       'p' => 'f23c31','q' => 'f34b41','r' => 'FFCD00','s' => 'f45a51','t' => 'FFAE00',
       'u' => '720d07','v' => '520905','w' => '520905','x' => '520905','y' => '620b06',
       'z' => '320603' }
+  end
+
+
+  def self.colors_green
+    { 'a' => '011303','b' => '022406','c' => '023409','d' => '04540f','e' => '03440c',
+      'f' => '023409','g' => 'A8B456','h' => '04540f','i' => '056511','j' => '056511',
+      'k' => 'A4B434','l' => '056511','m' => '056511','n' => '057514','o' => '057514',
+      'p' => '068517','q' => '07951a','r' => '07a51d','s' => '08b61f','t' => '09c622',
+      'u' => '0ad625','v' => '0ef42d','w' => '068517','x' => '07a51d','y' => '023409',
+      'z' => '056511' }
   end
 
   def picture
