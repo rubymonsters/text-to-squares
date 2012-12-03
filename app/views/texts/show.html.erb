@@ -12,7 +12,8 @@
       <% ['blue', 'red', 'green'].each do |color| %>
         <%= button_to 'change', text_path(@text.id,:text => {:color_scheme => color}), 
                        :method => :put, 
-                       :id => "#{color}_color_scheme_button" %> 
+                       :id => "#{color}_color_scheme_button",
+                       :style => "background-color:#{color} " %> 
       <% end%>
 </div>
 <div class="row">
