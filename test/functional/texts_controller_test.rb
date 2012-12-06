@@ -81,13 +81,13 @@ class TextsControllerTest < ActionController::TestCase
     assert_redirected_to text_path(assigns(:text))
   end
 
-  # test "should destroy text" do
-  #   assert_difference('Text.count', -1) do
-  #     delete :destroy, id: @text
-  #   end
+  test "should destroy text" do
+    assert_difference('Text.count', -1) do
+      delete :destroy, id: @text
+    end
 
-  #   assert_redirected_to texts_path
-  # end
+    assert_redirected_to texts_path
+  end
 
 
   test "text can be destroyed by its owner" do
@@ -96,8 +96,7 @@ class TextsControllerTest < ActionController::TestCase
     @text.save!
 
     session[:user_id] = user.id
-
-    @text.destroy
+    delete :destroy, :id => @text.id
     
     assert_response :success
   end
@@ -106,8 +105,8 @@ class TextsControllerTest < ActionController::TestCase
     user = User.create!(:name => "Testimus Maximus")
     @text.user = user
     @text.save!
-    
-    @text.destroy
+
+    delete :destroy, :id => @text.id
 
     assert_response 403
   end
