@@ -55,58 +55,32 @@ form.button_to {
   margin:0;
   padding:0;
   display:inline;
-
- 
 }
-
 
 
 form.button_to div, form.button_to div input{
   display:inline;
-  border: none;
+  border: none;  
+  -border-radius: 3px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
-  border-radius: 3px;
-  -webkit-box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 15px rgba(0,0,0,.7);
-  -moz-box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 15px rgba(0,0,0,.7);
-  box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 15px rgba(0,0,0,.7);
-  text-align: center;
-  
-  -webkit-transition: all .1s ease;
-  -moz-transition: all .1s ease;
-  -ms-transition: all .1s ease;
-  -o-transition: all .1s ease;
-  transition: all .1s ease;
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
 }
 
-
-
-
-.red_color_scheme_button {
-    position: relative;
-    color: rgba(255,255,255,1);
-    text-decoration: none;
-    background-color: rgba(219,87,5,1);
-    font-family: 'Yanone Kaffeesatz';
-    font-weight: 700;
-    font-size: 3em;
-    display: block;
-    padding: 4px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    border-radius: 8px;
-    -webkit-box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
-    -moz-box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
-    box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
-    margin: 100px auto;
-  width: 160px;
-  text-align: center;
-  
-  -webkit-transition: all .1s ease;
-  -moz-transition: all .1s ease;
-  -ms-transition: all .1s ease;
-  -o-transition: all .1s ease;
-  transition: all .1s ease;
+#red {
+  background-color: #820F08;
+  color: #fff;
 }
 
+#green {
+  background-color: #04540F;
+  color: #fff;
+}
 
+#blue {
+  background-color: #456789;
+  color: #fff;
+}
+
+  
