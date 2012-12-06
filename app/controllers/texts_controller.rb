@@ -85,7 +85,13 @@ class TextsController < ApplicationController
   # DELETE /texts/1.json
   def destroy
     @text = Text.find(params[:id])
-    @text.destroy
+    
+
+    if user_can_edit?(current_user, @text)
+      @text.destroy
+    else
+      render :text => "No waffles for you", :status => 403
+    end
 
     respond_to do |format|
       format.html { redirect_to texts_url }
