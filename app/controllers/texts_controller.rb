@@ -95,8 +95,6 @@ class TextsController < ApplicationController
     else
       render :text => "No waffles for you", :status => 403
     end
-
-   
   end
 end
 
