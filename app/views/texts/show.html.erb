@@ -8,14 +8,14 @@
 <br>
 <div class="row">
   <div class="span12">
-    <% if @square_color == "red" %>
-      <%= link_to "Blue Squares", text_path(@text.id), :class => "btn btn-info" %> 
-    <% else %>
-      <%= link_to "Red Squares", text_path(@text.id,{:display_color => "red"}), :class => "btn btn-danger" %> 
-    <% end %>
-  </div>
+    <p>Choose a color scheme:&nbsp;</p>
+      <% ['blue', 'red', 'green'].each do |color| %>
+        <%= button_to "#{color}", text_path(@text.id,
+                      :text => {:color_scheme => color}), 
+                      :method => :put, 
+                      :id => "#{color}" %> 
+      <% end%>
 </div>
-
 <div class="row">
   <div class="span12" style="padding-top:20px;">
     <ol style="width:<%= @text.rows.first.length * 50 +26%>px; margin: 0 auto;">
@@ -23,11 +23,11 @@
         <li>
           <ol>
             <% row.each do |square| %>
-              <% if @square_color == "red" %>
-                <li class="square" style='background-color:#<%= square.color_red %>'></li>
-              <% else %>
-                <li class="square" style='background-color:#<%= square.color %>'></li> 
-              <% end %>
+
+                <li class="square" 
+                    style='background-color:#<%= square.color(@text.color_scheme) %>'>
+                </li>
+              
             <% end %>
           </ol>
         </li>
