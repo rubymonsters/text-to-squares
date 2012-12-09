@@ -38,7 +38,7 @@ class TextsController < ApplicationController
   # GET /texts/1/edit
   def edit
     @text = Text.find(params[:id])
-    if user_can_edit?(current_user, @text)
+    if can_edit_text?(current_user, @text)
       render :edit
     else
       render :text => "No waffles for you", :status => 403
