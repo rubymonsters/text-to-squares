@@ -66,14 +66,17 @@ class TextsControllerTest < ActionController::TestCase
   test "@square_color not defined if display_color is not defined" do
     get :show, id: @text
     #puts response.body
-    assert_equal @square_color, nil
+    assert_equal @text.color_scheme, "red"
   end
+ 
 
   #show request,with params for the text variable 
   test "should change @square_color to red after using the link_to 'Red Squares'" do
-    get :show, id: @text, display_color: "red"
+    get :show, id: @text.id
+    assert_equal assigns[:text].color_scheme, "red"
     #puts response.body
-    assert_equal assigns[:square_color], "red"
+    # puts Text.all.map{|text| text.color_scheme}
+    # assert_equal assigns[:square_color], "red"
   end
 
   test "should get edit" do

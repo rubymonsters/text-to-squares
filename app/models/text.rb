@@ -6,7 +6,7 @@ class Text < ActiveRecord::Base #framework aus verschiedenen klassen/module
   belongs_to :user
   
 
-  def self.colors
+  def self.colors_blue
     { 'a' => '112233','b' => '223344','c' => '334455','d' => '445566','e' => '556677',
       'f' => '667788','g' => '778899','h' => '8899AA','i' => '99AABB','j' => 'AABBCC',
       'k' => 'BBCCDD','l' => 'CCDDEE','m' => 'DDEEFF','n' => 'EEFF11','o' => 'FF1122',
