@@ -1,5 +1,8 @@
 class TextsController < ApplicationController
+  before_filter :user_can_edit?(current_user, @text), :only=> [:edit]
+
   include TextsHelper
+
 
   # GET /texts
   # GET /texts.json
