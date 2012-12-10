@@ -1,99 +1,71 @@
 class TextsController < ApplicationController
-  before_filter :user_can_edit?(current_user, @text), :only=> [:edit]
-
   include TextsHelper
 
+  before_filter :set_text, :only => [:edit, :destroy, :update]
+  before_filter :require_permision, :only=> [:edit, :destroy, :update]
 
   # GET /texts
-  # GET /texts.json
   def index
     @texts = Text.order("created_at DESC").page(params[:page]).per(10)
-  
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @texts }
-    end
+    render :index      
   end
 
   # GET /texts/1
-  # GET /texts/1.json
   def show
     @text = Text.find(params[:id])
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: text }
-    end
+    render :show
   end
 
   # GET /texts/new
-  # GET /texts/new.json
   def new
     @text = Text.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @text }
-    end
+    render :new
   end
 
   # GET /texts/1/edit
   def edit
-    @text = Text.find(params[:id])
-    if can_edit_text?(current_user, @text)
-      render :edit
-    else
-      render :text => "No waffles for you", :status => 403
-    end
+    render :edit
   end
 
   # POST /texts
-  # POST /texts.json
   def create
     @text = Text.new(params[:text])
     @text.user = current_user
 
-    respond_to do |format|
-      if @text.save
-        format.html { redirect_to @text, notice: 'Yeah, Square was successfully created.'}
-        format.json { render json: @text, status: :created, location: @text }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @text.errors, status: :unprocessable_entity }
-      end
+    if @text.save
+      redirect_to @text, notice: 'Yeah, Square was successfully created.'
+    else
+      render action: "new" 
     end
   end
 
   # PUT /texts/1
-  # PUT /texts/1.json
   def update
     @text = Text.find(params[:id])
-    respond_to do |format|
-      if @text.update_attributes(params[:text])
-        format.html { redirect_to @text, notice: 'Square was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @text.errors, status: :unprocessable_entity }
-      end
+
+    if @text.update_attributes(params[:text])
+      redirect_to @text, notice: 'Square was successfully updated.'
+    else
+      render action: "edit" 
     end
   end
 
   # DELETE /texts/1
-  # DELETE /texts/1.json
   def destroy
     @text = Text.find(params[:id])
+    @text.destroy
+    redirect_to texts_path
+  end
 
-    if user_can_edit?(current_user, @text)
-      @text.destroy
-        respond_to do |format|
-          format.html { redirect_to texts_url }
-          format.json { head :no_content }
-        end
-    else
+
+
+  def require_permision
+    unless can_edit_text?(current_user, @text)
       render :text => "No waffles for you", :status => 403
     end
   end
-end
 
+  def set_text
+    @text = Text.find(params[:id])
+  end
+end

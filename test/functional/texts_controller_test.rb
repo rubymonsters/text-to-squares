@@ -79,9 +79,30 @@ class TextsControllerTest < ActionController::TestCase
     # assert_equal assigns[:square_color], "red"
   end
 
-  test "should update text" do
-    put :update, id: @text, text: { input: @text.input }
-    assert_redirected_to text_path(assigns(:text))
+  # test "should update text" do
+  #   put :update, id: @text, text: { input: @text.input }
+  #   assert_redirected_to text_path(assigns(:text))
+  # end
+
+  test "text can be updated by its owner" do
+    user = User.create!(:name => "Testimus Maximus")
+    @text.user = user
+    @text.save!
+
+    session[:user_id] = user.id
+    put :update, :id => @text.id
+    
+    assert_redirected_to text_path
+  end
+
+  test "it is forbidden to update someone else's text" do
+    user = User.create!(:name => "Testimus Maximus")
+    @text.user = user
+    @text.save!
+
+    put :update, :id => @text.id
+
+    assert_response 403
   end
 
   test "text can be destroyed by its owner" do
@@ -92,7 +113,7 @@ class TextsControllerTest < ActionController::TestCase
     session[:user_id] = user.id
     delete :destroy, :id => @text.id
     
-    assert_redirected_to text_path
+    assert_redirected_to texts_path
   end
 
   test "it is forbidden to destroy someone else's text" do

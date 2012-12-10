@@ -3,13 +3,17 @@ class User < ActiveRecord::Base
 
   has_many :texts
 
-  def is_admin?
-    name == "tyranja"
+  ADMINS = ["tyranja", "sabrna"]
+
+  def admin?
+    ADMINS.include?(name)
   end
+
+
 
   def as_json(options = nil)
     hash = super(options)
-    hash["is_admin"] = is_admin?
+    hash["admin"] = admin?
     hash
   end
 
