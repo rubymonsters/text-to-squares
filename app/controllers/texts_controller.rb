@@ -1,8 +1,8 @@
 class TextsController < ApplicationController
   include TextsHelper
 
-  before_filter :set_text, :only => [:edit, :destroy, :update]
-  before_filter :require_permision, :only=> [:edit, :destroy, :update]
+  before_filter :set_text, :only => [:edit, :destroy]
+  before_filter :require_permision, :only=> [:edit, :destroy]
 
   # GET /texts
   def index
@@ -56,8 +56,6 @@ class TextsController < ApplicationController
     @text.destroy
     redirect_to texts_path
   end
-
-
 
   def require_permision
     unless can_edit_text?(current_user, @text)
