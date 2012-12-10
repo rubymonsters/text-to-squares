@@ -22,7 +22,11 @@
           </td>
         <% end %>
         <td style="width:400px;display:block;">
-          <%= text.input %>
+          <%= truncate(text.input, 
+                        :length => 140, 
+                        :separator => ' ', 
+                        :omission => '...')
+           %>
         </td>
         <td>
           <i class="icon-stop"></i>&nbsp;<%= link_to 'Show', text %>
