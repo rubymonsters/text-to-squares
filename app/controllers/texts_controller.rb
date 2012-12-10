@@ -1,5 +1,8 @@
 class TextsController < ApplicationController
+  before_filter :user_can_edit?(current_user, @text), :only=> [:edit]
+
   include TextsHelper
+
 
   # GET /texts
   # GET /texts.json
@@ -81,11 +84,15 @@ class TextsController < ApplicationController
   # DELETE /texts/1.json
   def destroy
     @text = Text.find(params[:id])
-    @text.destroy
 
-    respond_to do |format|
-      format.html { redirect_to texts_url }
-      format.json { head :no_content }
+    if user_can_edit?(current_user, @text)
+      @text.destroy
+        respond_to do |format|
+          format.html { redirect_to texts_url }
+          format.json { head :no_content }
+        end
+    else
+      render :text => "No waffles for you", :status => 403
     end
   end
 end
