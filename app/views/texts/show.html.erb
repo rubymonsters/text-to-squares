@@ -11,9 +11,9 @@
     <p>Choose a color scheme:&nbsp;</p>
       <% ['blue', 'red', 'green'].each do |color| %>
         <%= button_to "#{color}", text_path(@text.id,
-                      :text => {:color_scheme => color}), 
-                      :method => :put, 
-                      :id => "#{color}" %> 
+                      :text => {:color_scheme => color}),
+                      :method => :put,
+                      :id => "#{color}" %>
       <% end%>
 </div>
 <div class="row">
@@ -24,10 +24,12 @@
           <ol>
             <% row.each do |square| %>
 
-                <li class="square" 
-                    style='background-color:#<%= square.color(@text.color_scheme) %>'>
+                <li class="square"
+                    style='background-color:#<%= square.color(@text.color_scheme) %>'
+                    style='background-color:#<%= @text.color_schema_hash[square.char] %>'
+                    style='background-color:#<%= @text.color_for(square.char) %>'>
                 </li>
-              
+
             <% end %>
           </ol>
         </li>
@@ -49,7 +51,7 @@
     <%= f.hidden_field :publish_text, :value => !@text.publish_text %>
     <%= f.submit @text.publish_text ? 'Hide your Text' : 'Show your Text' %>
     <% end %>
-  </div>  
+  </div>
 </div>
 <%= link_to 'Edit', edit_text_path(@text) %> |
 <%= link_to 'Listing Texts', texts_path %> |
