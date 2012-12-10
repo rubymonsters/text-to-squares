@@ -28,14 +28,14 @@
           <i class="icon-stop"></i>&nbsp;<%= link_to 'Show', text %>
         </td>
         <td style="color:#777">
-          <% if user_can_edit?(current_user, text) %>
+          <% if can_edit_text?(current_user,text) %>
             <i class="icon-wrench"></i>&nbsp;<%= link_to 'Edit', edit_text_path(text) %>
           <% else %>
             <i class="icon-wrench"></i>&nbsp;Edit
           <% end %>
         </td>
         <td style="color:#777">
-          <% if helper_current_user_equals_text_user?(current_user,text) %>           
+          <% if can_edit_text?(current_user,text) %>           
             <i class="icon-trash"></i>&nbsp;<%= link_to 'Destroy', text, confirm: 'Are you sure?', method: :delete %>
             <% else %>
             <i class="icon-trash"></i>&nbsp;Destroy

@@ -2,11 +2,10 @@ require 'test_helper'
 
 class TextTest < ActiveSupport::TestCase
  
- # test "text attributes must not be empty" do
- #    text = Text.new("test")
+  # test "text attributes must not be empty" do
+  #   text = Text.new("test")
     
- #    assert text.invalid?
- #    assert text.errors[:input].any?
- #  end
+  #   assert_equal text.input, "test"
+  # end
 
 end

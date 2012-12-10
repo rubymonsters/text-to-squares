@@ -2,6 +2,7 @@
 
 one:
   input: Text_one
+  color_scheme: red
 
 two:
   input: Text_two
