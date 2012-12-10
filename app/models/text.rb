@@ -35,17 +35,13 @@ class Text < ActiveRecord::Base #framework aus verschiedenen klassen/module
   end
 
   def picture
-    Picture.new(input)
+    Picture.new(input, color_schema_hash)
   end
 
   def input_should_not_be_empty
     if picture.normalized_string.blank?
       errors.add(:input, "You should write something!")
     end
-  end
-
-  def color_for(char)
-    color_schema_hash[char]
   end
 
   def color_schema_hash

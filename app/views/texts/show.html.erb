@@ -25,7 +25,7 @@
             <% row.each do |square| %>
 
                 <li class="square"
-                    style='background-color:#<%= square.color(@text.color_scheme) %>'
+                    style='background-color:#<%= square.color %>'
                     style='background-color:#<%= @text.color_schema_hash[square.char] %>'
                     style='background-color:#<%= @text.color_for(square.char) %>'>
                 </li>
