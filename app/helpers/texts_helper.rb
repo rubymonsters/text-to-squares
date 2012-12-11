@@ -1,12 +1,14 @@
 module TextsHelper
 
-  def can_edit_text?(current_user,text)
-    if (current_user && text.user && current_user.id == text.user.id)
+  def can_edit_text?(user,text)
+    if user_owns_text?(user,text) || user && user.admin?
       true
     else
       false
     end
   end
 
-
+  def user_owns_text?(user,text) 
+    user && text.user && user.id == text.user.id
+  end
 end
