@@ -58,7 +58,7 @@ form.button_to {
 }
 
 
-form.button_to div, form.button_to div input{
+form.button_to div, form.button_to div input, a.color_button{
   display:inline;
   border: none;  
   -border-radius: 3px;
@@ -67,6 +67,11 @@ form.button_to div, form.button_to div input{
   -o-border-radius: 3px;
   -ms-border-radius: 3px;
 }
+
+a.color_button {
+  padding: 1px 6px 2px 6px;
+}
+
 
 #red {
   background-color: #820F08;

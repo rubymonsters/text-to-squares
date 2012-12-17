@@ -62,6 +62,20 @@ class TextsControllerTest < ActionController::TestCase
     assert_response :success
   end
   
+  test "check if square_color has default color" do
+    text = Text.create(:input=> "a", :color_scheme => "red")
+    get :show, id: text
+    assert_select "li.square[style*='320603']"
+  end
+
+   test "check if square_color has alternate color" do
+    text = Text.create(:input=> "a", :color_scheme => "red")
+    get :show, :id => text, :color_scheme => "green"
+    assert_select "li.square[style*='011303']"
+  end
+  
+
+
   #show request,without params for the text variable
   test "@square_color not defined if display_color is not defined" do
     get :show, id: @text
