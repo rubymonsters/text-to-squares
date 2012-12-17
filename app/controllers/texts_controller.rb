@@ -1,8 +1,8 @@
 class TextsController < ApplicationController
   include TextsHelper
 
-  before_filter :set_text, :only => [:edit, :destroy]
-  before_filter :require_permision, :only=> [:edit, :destroy]
+  before_filter :set_text, :only => [:update, :edit, :destroy]
+  before_filter :require_permision, :only=> [:update, :edit, :destroy]
 
   # GET /texts
   def index
@@ -41,8 +41,6 @@ class TextsController < ApplicationController
 
   # PUT /texts/1
   def update
-    @text = Text.find(params[:id])
-
     if @text.update_attributes(params[:text])
       redirect_to @text, notice: 'Square was successfully updated.'
     else
