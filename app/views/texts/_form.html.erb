@@ -16,9 +16,18 @@
     <%# f.label :input %><br />
     <%= f.text_area :input,  :placeholder => "Type your text in here"  %>
   </div>
+
+     <div class="field">
+    <%= f.label :color_scheme %><br />
+    <%= f.collection_select :color_scheme , ::Text::COLORS, :to_s, :to_s, 
+       :include_blank => false %>
+  </div>
+  
   <div class="actions">
       <%= f.submit("Create Picture", :class => "btn btn-primary") %>
   </div>
+
+
 <% end %>
 
 

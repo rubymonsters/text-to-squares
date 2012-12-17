@@ -11,6 +11,7 @@ class TextsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:texts)
   end
 
+
   test "should have class table" do
     get :index   
     assert_select '.table' #css selector
@@ -43,6 +44,13 @@ class TextsControllerTest < ActionController::TestCase
     get :new
     assert_response :success
   end
+
+  test "should show color select box in new view" do
+    get :new
+    assert_not_nil :color_scheme
+    assert_response :success
+    assert_select "select" 
+  end  
 
   test "should have link listening text" do
     get :new

@@ -5,6 +5,7 @@ class Text < ActiveRecord::Base #framework aus verschiedenen klassen/module
 
   belongs_to :user
   
+  COLORS = ['blue','red','green']
 
   def self.colors_blue
     { 'a' => '112233','b' => '223344','c' => '334455','d' => '445566','e' => '556677',
