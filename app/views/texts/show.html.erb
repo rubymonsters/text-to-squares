@@ -10,10 +10,9 @@
   <div class="span12">
     <p>Choose a color scheme:&nbsp;</p>
       <% ['blue', 'red', 'green'].each do |color| %>
-        <%= button_to "#{color}", text_path(@text.id,
-                      :text => {:color_scheme => color}), 
-                      :method => :put, 
-                      :id => "#{color}" %> 
+        <%= link_to "#{color}", text_path(@text.id, :color_scheme => color),
+                      :id => "#{color}",
+                      :class => "color_button" %> 
       <% end%>
 </div>
 <div class="row">
@@ -25,7 +24,7 @@
             <% row.each do |square| %>
 
                 <li class="square" 
-                    style='background-color:#<%= square.color(@text.color_scheme) %>'>
+                    style='background-color:#<%= square.color(params[:color_scheme]||@text.color_scheme) %>'>
                 </li>
               
             <% end %>
